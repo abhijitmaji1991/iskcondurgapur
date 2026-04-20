@@ -1,0 +1,20 @@
+
+--- AUDIT REPORT ---
+WARN: Found 9 potentially broken links:
+  - /admin/users in src\app\admin\page.tsx
+  - /admin/events in src\app\admin\page.tsx
+  - /admin/content in src\app\admin\page.tsx
+  - /admin/media in src\app\admin\page.tsx
+  - /terms in src\app\auth\signup\page.tsx
+  - /privacy in src\app\auth\signup\page.tsx
+  - /contact in src\app\courses\page.tsx
+  - /get-involved/book-distribution in src\app\resources\books\page.tsx
+  - /resources/videos/all in src\app\resources\videos\page.tsx
+
+WARN: Found 6 missing images:
+  - /images/prabhupada.jpg in src\app\about\page.tsx
+  - /images/temple-interior.jpg in src\app\become-member\page.tsx
+  - /audio/bg.mp3 in src\app\philosophy\page.tsx
+  - /images/articles/articles-hero.jpg in src\app\resources\articles\page.tsx
+  - /images/book-distribution.jpg in src\app\resources\books\page.tsx
+  - /images/temple-altar.jpg in src\app\spiritual-life\daily-worship\page.tsx

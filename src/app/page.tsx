@@ -1,0 +1,204 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { FaArrowRight, FaPrayingHands } from 'react-icons/fa';
+
+export default function Home() {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  const fadeIn = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6 }
+    }
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  return (
+    <div className="relative overflow-hidden">
+      {/* Hero Section - Modern Split Screen */}
+      <section className="relative min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-orange-100 overflow-hidden">
+        {/* Animated Background Pattern */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-orange-300 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber-300 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-yellow-200 rounded-full blur-3xl opacity-50" />
+        </div>
+
+        {/* Decorative Circles */}
+        <div className="absolute top-20 right-20 w-4 h-4 bg-orange-400 rounded-full animate-ping" />
+        <div className="absolute top-40 right-40 w-2 h-2 bg-amber-500 rounded-full animate-ping" style={{ animationDelay: '0.5s' }} />
+        <div className="absolute bottom-40 left-20 w-3 h-3 bg-orange-500 rounded-full animate-ping" style={{ animationDelay: '1s' }} />
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-[calc(100vh-6rem)]">
+
+            {/* Left Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={isLoaded ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8 }}
+              className="text-center lg:text-left"
+            >
+              {/* Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isLoaded ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.2 }}
+                className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg mb-6"
+              >
+                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                <span className="text-sm font-medium text-gray-700">Temple Open Daily 4:30 AM - 8:30 PM</span>
+              </motion.div>
+
+              {/* Main Heading */}
+              <motion.h1
+                className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6"
+                initial={{ opacity: 0 }}
+                animate={isLoaded ? { opacity: 1 } : {}}
+                transition={{ delay: 0.4 }}
+              >
+                <span className="text-gray-800">Welcome to</span>
+                <br />
+                <span className="bg-gradient-to-r from-orange-600 via-amber-500 to-orange-600 bg-clip-text text-transparent">
+                  ISKCON Durgapur
+                </span>
+              </motion.h1>
+
+              {/* Sanskrit Verse */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={isLoaded ? { opacity: 1 } : {}}
+                transition={{ delay: 0.6 }}
+                className="mb-6 p-4 bg-white/60 backdrop-blur-sm rounded-xl border-l-4 border-orange-500"
+              >
+                <p className="text-2xl sm:text-3xl font-sanskrit text-orange-700 mb-2">
+                  हरे कृष्ण हरे कृष्ण
+                </p>
+                <p className="text-lg font-sanskrit text-orange-600">
+                  कृष्ण कृष्ण हरे हरे
+                </p>
+              </motion.div>
+
+              {/* Description */}
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={isLoaded ? { opacity: 1 } : {}}
+                transition={{ delay: 0.8 }}
+                className="text-lg sm:text-xl text-gray-600 mb-8 max-w-xl mx-auto lg:mx-0"
+              >
+                Experience the divine atmosphere of Krishna Consciousness.
+                Join us for daily aartis, spiritual discourses, and the nectarean prasadam.
+              </motion.p>
+
+              {/* CTA Buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isLoaded ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 1 }}
+                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+              >
+                <Link
+                  href="/about"
+                  className="group relative bg-gradient-to-r from-orange-500 to-amber-500 text-white px-8 py-4 rounded-2xl font-semibold text-lg shadow-xl shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-300 overflow-hidden"
+                >
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    Visit Temple
+                    <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </Link>
+                <Link
+                  href="/donate"
+                  className="bg-white text-orange-600 px-8 py-4 rounded-2xl font-semibold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-orange-200 hover:border-orange-400"
+                >
+                  <span className="flex items-center justify-center gap-2">
+                    <FaPrayingHands />
+                    Support Seva
+                  </span>
+                </Link>
+              </motion.div>
+            </motion.div>
+
+            {/* Right Content - Image Gallery */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={isLoaded ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="relative"
+            >
+              {/* Main Image Card */}
+              <motion.div
+                className="relative z-10"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: 'spring', stiffness: 300 }}
+              >
+                <div className="relative h-[400px] sm:h-[500px] rounded-3xl overflow-hidden shadow-2xl">
+                  <Image
+                    src="/images/krishna-temple.jpg"
+                    alt="ISKCON Durgapur Temple"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
+                  {/* Floating Info Card */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isLoaded ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 1.2 }}
+                    className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-xl"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h3 className="font-bold text-gray-800 text-lg">Sri Sri Radha Madanmohan Temple</h3>
+                        <p className="text-gray-500 text-sm">Durgapur, West Bengal</p>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-2xl font-bold text-orange-500">🙏</div>
+                        <p className="text-xs text-gray-500">Jai Sri Krishna</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+              </motion.div>
+
+              {/* Decorative Cards */}
+              <motion.div
+                initial={{ opacity: 0, rotate: -5 }}
+                animate={isLoaded ? { opacity: 1, rotate: -6 } : {}}
+                transition={{ delay: 0.5 }}
+                className="absolute -top-4 -left-4 w-32 h-40 bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl -z-10 shadow-lg"
+              />
+              <motion.div
+                initial={{ opacity: 0, rotate: 5 }}
+                animate={isLoaded ? { opacity: 1, rotate: 6 } : {}}
+                transition={{ delay: 0.7 }}
+                className="absolute -bottom-4 -right-4 w-40 h-32 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl -z-10 shadow-lg"
+              />
+            </motion.div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+  );
+}

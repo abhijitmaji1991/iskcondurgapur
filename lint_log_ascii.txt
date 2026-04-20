@@ -1,0 +1,37 @@
+
+> iskcon-website@0.1.0 lint
+> next lint
+
+
+./src/app/admin/events/edit/[id]/page.tsx
+57:8  Warning: React Hook useEffect has a missing dependency: 'fetchEventData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/app/admin/events/page.tsx
+154:57  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/admin/resources/edit/[id]/page.tsx
+55:8  Warning: React Hook useEffect has a missing dependency: 'fetchResourceData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/app/admin/temples/edit/[id]/page.tsx
+71:6  Warning: React Hook useEffect has a missing dependency: 'fetchTempleData'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/app/admin/temples/page.tsx
+146:27  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+172:47  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+172:58  Error: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+
+./src/app/courses/page.tsx
+234:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+380:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/philosophy/page.tsx
+75:6  Warning: React Hook useEffect has missing dependencies: 'isMuted' and 'volume'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/app/prasadam/page.tsx
+264:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+391:23  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/spiritual-life/sadhana/page.tsx
+81:8  Warning: React Hook useEffect has a missing dependency: 'fetchHistory'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules

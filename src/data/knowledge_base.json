@@ -1,0 +1,127 @@
+[
+    {
+        "id": "temple_info_1",
+        "category": "temple",
+        "keywords": [
+            "location",
+            "address",
+            "durgapur",
+            "where",
+            "place"
+        ],
+        "content": "ISKCON Durgapur (Sri Sri Radha Madhav Mandir) is located at Nakhrajoria, Durgapur, West Bengal 713210. It is a spiritual oasis in the industrial city, easily accessible from Durgapur Railway Station (8km) and City Centre (4km)."
+    },
+    {
+        "id": "timings_1",
+        "category": "temple",
+        "keywords": [
+            "time",
+            "timings",
+            "open",
+            "close",
+            "schedule",
+            "darshan",
+            "aarti"
+        ],
+        "content": "Official Temple Schedule:\n- 4:30 AM: Mangala Aarti (First darshan)\n- 5:00 AM: Tulasi Aarti\n- 7:30 AM: Shringar Aarti (Full Darshan) & Guru Puja\n- 8:00 AM: Srimad Bhagavatam Class\n- 1:00 PM: Temple closes for afternoon\n- 4:30 PM: Temple reopens\n- 7:00 PM: Sandhya (Gaura) Aarti\n- 8:30 PM: Temple closes"
+    },
+    {
+        "id": "deities_1",
+        "category": "temple",
+        "keywords": [
+            "deity",
+            "deities",
+            "god",
+            "worship",
+            "radha",
+            "madhav"
+        ],
+        "content": "The presiding deities of ISKCON Durgapur are Sri Sri Radha Madhav (Radha and Krishna), along with Sri Sri Jagannath, Baladev, and Subhadra, and Sri Sri Gaura Nitai (Lord Chaitanya and Lord Nityananda)."
+    },
+    {
+        "id": "guest_house_1",
+        "category": "services",
+        "keywords": [
+            "guest house",
+            "stay",
+            "accommodation",
+            "room",
+            "hotel",
+            "booking"
+        ],
+        "content": "ISKCON Durgapur offers a clean and peaceful Guest House for pilgrims. We have AC and Non-AC rooms available. To book a room, please visit the temple front office or call our reception. Devotees are requested to book in advance during festivals."
+    },
+    {
+        "id": "govindas_1",
+        "category": "services",
+        "keywords": [
+            "food",
+            "restaurant",
+            "govinda",
+            "prasadam",
+            "eat",
+            "lunch",
+            "dinner"
+        ],
+        "content": "Govinda's Restaurant is available on the temple premises, serving delicious, sattvic, pure vegetarian (no onion/garlic) prasadam. \nTimings: \n- Lunch: 12:00 PM - 2:30 PM\n- Snacks: 4:30 PM - 8:00 PM\n- Dinner: 7:30 PM - 9:00 PM"
+    },
+    {
+        "id": "philosophy_1",
+        "category": "philosophy",
+        "keywords": [
+            "soul",
+            "body",
+            "atma",
+            "identity",
+            "who am i"
+        ],
+        "content": "Vedic wisdom teaches that we are not these temporary material bodies but eternal spiritual souls (atma). Our true nature is 'Sat-Chit-Ananda' (Eternity, Knowledge, and Bliss). Suffering arises from misidentifying with the body; happiness comes from reviving our eternal relationship with Krishna."
+    },
+    {
+        "id": "chanting_1",
+        "category": "practice",
+        "keywords": [
+            "chant",
+            "chanting",
+            "mantra",
+            "japa",
+            "meditation",
+            "hare krishna"
+        ],
+        "content": "The Hare Krishna Maha-mantra is the Great Mantra for Deliverance in this Kali Yuga. \nMantra: *Hare Krishna, Hare Krishna, Krishna Krishna, Hare Hare / Hare Rama, Hare Rama, Rama Rama, Hare Hare*.\nIt calls upon the Lord (Krishna) and His internal energy (Hare/Radha) to engage us in service. Chant 108 times on beads constitutes one 'round'."
+    },
+    {
+        "id": "prabhupada_1",
+        "category": "history",
+        "keywords": [
+            "prabhupada",
+            "founder",
+            "acharya",
+            "swami"
+        ],
+        "content": "His Divine Grace A.C. Bhaktivedanta Swami Prabhupada is the Founder-Acharya of ISKCON. He established the society in 1966 in New York at the age of 70. He circled the globe 14 times, opened 108 temples, and translated over 80 volumes of Vedic scriptures, bringing Krishna Consciousness to the world."
+    },
+    {
+        "id": "sunday_feast_1",
+        "category": "events",
+        "keywords": [
+            "sunday",
+            "weekend",
+            "program",
+            "feast"
+        ],
+        "content": "Every Sunday, we host the 'Sunday Love Feast'. \nSchedule:\n- 5:00 PM: Kirtan (Musical Mantra Meditation)\n- 6:00 PM: Vedic Discourse (Lecture on Bhagavad Gita)\n- 7:00 PM: Gaura Aarti\n- 7:45 PM: Free Prasadam Feast for all guests."
+    },
+    {
+        "id": "donate_1",
+        "category": "services",
+        "keywords": [
+            "donate",
+            "donation",
+            "contribute",
+            "help",
+            "support"
+        ],
+        "content": "You can support ISKCON Durgapur's activities including Annadanam (Food Distribution), Temple Construction, and Deity Seva. Donations are eligible for 80G tax exemption. Visit the donation office or our website's 'Donate' section."
+    }
+]
