@@ -2,10 +2,18 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { FaFacebook, FaTwitter, FaYoutube, FaInstagram, FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa';
 
 export default function Footer() {
+  const pathname = usePathname();
+  const isAdmin = pathname?.startsWith('/admin');
+
+  if (isAdmin) {
+    return null;
+  }
+
   const footerLinks = [
     {
       title: 'About ISKCON',
@@ -19,7 +27,7 @@ export default function Footer() {
     {
       title: 'Resources',
       links: [
-        { name: 'Bhagavad Gita', href: '/resources/bhagavad-gita' },
+        { name: 'Bhagavad Gita', href: '/resources/books' },
         { name: 'Vedic Literature', href: '/resources/vedic-literature' },
         { name: 'Online Books', href: '/resources/books' },
         { name: 'Podcasts', href: '/resources/podcasts' },

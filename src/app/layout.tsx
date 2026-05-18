@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, Poppins } from 'next/font/google';
 import '@/styles/globals.css';
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 import { AuthProvider } from '@/context/auth/AuthContext';
 
 const inter = Inter({
@@ -25,6 +26,7 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://iskcondurgapur.com'),
   title: 'ISKCON Durgapur | Hare Krishna Temple & Community',
   description: 'Welcome to ISKCON Durgapur. Experience the divine atmosphere of Krishna Consciousness, explore Vedic wisdom, join daily aartis, and participate in spiritual festivals.',
   keywords: ['ISKCON', 'Durgapur', 'Krishna', 'Bhagavad Gita', 'Spirituality', 'Temple', 'Vedic Wisdom', 'Prasadam', 'Yoga', 'Meditation'],
@@ -80,6 +82,7 @@ export default function RootLayout({
         <AuthProvider>
           <Navbar />
           <main className="flex-grow">{children}</main>
+          <Footer />
         </AuthProvider>
       </body>
     </html>

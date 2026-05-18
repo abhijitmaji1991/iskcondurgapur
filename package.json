@@ -4,8 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "backend": "cd backend && php -c ../php.ini -S 127.0.0.1:8080 -t public",
-    "legacy-backend": "tsx server/index.ts",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -16,13 +14,6 @@
     "@types/nodemailer": "^6.4.17",
     "autoprefixer": "^10.4.17",
     "bcrypt": "^6.0.0",
-    "cookie-parser": "^1.4.7",
-    "cors": "^2.8.6",
-    "csrf": "^3.1.0",
-    "dotenv": "^17.2.4",
-    "express": "^5.2.1",
-    "express-rate-limit": "^7.5.0",
-    "express-validator": "^7.2.1",
     "framer-motion": "^11.0.3",
     "gsap": "^3.12.5",
     "jsonwebtoken": "^9.0.3",
@@ -47,15 +38,11 @@
     "speakeasy": "^2.0.0",
     "tailwindcss": "^3.4.1",
     "three": "^0.161.0",
-    "tsx": "^4.21.0",
     "winston": "^3.17.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.53.0",
     "@types/bcrypt": "^5.0.2",
-    "@types/cors": "^2.8.19",
-    "@types/csrf": "^1.3.2",
-    "@types/express": "^5.0.6",
     "@types/node": "^20.11.16",
     "@types/qrcode": "^1.5.5",
     "@types/react": "^18.2.51",

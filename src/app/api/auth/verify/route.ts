@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 import { verify } from 'jsonwebtoken';
 
+// This route reads request.headers at runtime — must not be statically rendered
+export const dynamic = 'force-dynamic';
+
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 
 export async function GET(request: Request) {

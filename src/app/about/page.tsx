@@ -92,7 +92,7 @@ export default function AboutPage() {
             >
               <div className="relative h-96 w-full rounded-xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/images/prabhupada.jpg"
+                  src="/images/srila-prabhupada.jpg"
                   alt="Srila Prabhupada, the founder of ISKCON"
                   layout="fill"
                   objectFit="cover"

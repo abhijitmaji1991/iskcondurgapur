@@ -299,7 +299,7 @@ export default function PhilosophyPage() {
           </div>
 
           <div className="flex justify-center">
-            <Link href="/prabhupada-books" className="btn-primary text-lg flex items-center">
+            <Link href="/resources/books" className="btn-primary text-lg flex items-center">
               <FaBookOpen className="mr-2" /> Browse Srila Prabhupada&apos;s Books
             </Link>
           </div>

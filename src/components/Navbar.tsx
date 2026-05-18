@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBars, FaTimes, FaChevronDown, FaHome, FaInfoCircle, FaPrayingHands, FaCalendarAlt, FaBook, FaLandmark, FaImages, FaEnvelope, FaUtensils, FaPlane, FaGraduationCap, FaShoppingCart, FaUsers } from 'react-icons/fa';
 
@@ -26,7 +27,7 @@ const navigation = [
     submenu: [
       { name: 'Biography', href: '/prabhupada/biography' },
       { name: 'Teachings', href: '/prabhupada/teachings' },
-      { name: 'Books', href: '/prabhupada-books' },
+      { name: 'Books', href: '/resources/books' },
       { name: 'Lectures', href: '/prabhupada/lectures' },
       { name: 'Quotes', href: '/resources/prabhupada-quotes' },
       { name: 'Gallery', href: '/prabhupada/gallery' }
@@ -55,6 +56,7 @@ const navigation = [
     submenu: [
       { name: 'Books', href: '/resources/books' },
       { name: 'Audio & Podcasts', href: '/resources/audio' },
+      { name: 'Vaishnava Bhajans', href: '/resources/bhajans' },
       { name: 'Videos', href: '/resources/videos' },
       { name: 'Articles', href: '/resources/articles' },
       { name: 'Photo Gallery', href: '/resources/gallery' }
@@ -75,6 +77,7 @@ const navigation = [
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
@@ -92,6 +95,12 @@ export default function Navbar() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [scrolled]);
+
+  const isAdmin = pathname?.startsWith('/admin');
+
+  if (isAdmin) {
+    return null;
+  }
 
   const toggleSubmenu = (name: string) => {
     setActiveSubmenu(activeSubmenu === name ? null : name);

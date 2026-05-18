@@ -327,7 +327,7 @@ export default function PrabhupadaPage() {
           </div>
 
           <div className="text-center">
-            <Link href="/prabhupada-books" className="btn-primary">
+            <Link href="/resources/books" className="btn-primary">
               Explore Srila Prabhupada&apos;s Books
             </Link>
           </div>
@@ -345,7 +345,7 @@ export default function PrabhupadaPage() {
                 lectures, and remembrances from his disciples.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link href="/prabhupada-books" className="btn-primary">
+                <Link href="/resources/books" className="btn-primary">
                   Books by Srila Prabhupada
                 </Link>
                 <Link href="/resources/audio" className="btn-secondary">
