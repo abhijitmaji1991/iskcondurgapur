@@ -375,10 +375,10 @@ export default function BhajansPage() {
               <div>
                 <div className="flex justify-between items-start mb-3">
                   <div>
-                    <h3 className="text-xl font-bold text-gray-800 hover:text-orange-500 transition cursor-pointer" onClick={() => setSelectedBhajan(bhajan)}>
+                    <h3 className="text-xl font-bold text-gray-800 hover:text-orange-500 transition cursor-pointer font-sanskrit" onClick={() => setSelectedBhajan(bhajan)}>
                       {bhajan.title}
                     </h3>
-                    <p className="text-sm text-orange-600/80 font-medium flex items-center mt-1">
+                    <p className="text-sm text-orange-600/80 font-medium flex items-center mt-1 font-sanskrit">
                       <FaUser className="mr-2 text-xs" /> {bhajan.author}
                     </p>
                   </div>
@@ -447,10 +447,10 @@ export default function BhajansPage() {
                   <FaMusic className={isPlaying ? 'animate-bounce' : ''} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-gray-800">
+                  <h4 className="font-bold text-gray-800 font-sanskrit">
                     {bhajans.find(b => b.id === currentTrack)?.title}
                   </h4>
-                  <p className="text-xs text-orange-600/80 font-medium">
+                  <p className="text-xs text-orange-600/80 font-medium font-sanskrit">
                     {bhajans.find(b => b.id === currentTrack)?.author}
                   </p>
                 </div>
@@ -512,8 +512,8 @@ export default function BhajansPage() {
               {/* Modal Header */}
               <div className="p-6 border-b border-orange-100 flex justify-between items-center bg-white">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-800">{selectedBhajan.title}</h2>
-                  <p className="text-orange-500 font-semibold text-sm mt-0.5">{selectedBhajan.author}</p>
+                  <h2 className="text-2xl font-bold text-gray-800 font-sanskrit">{selectedBhajan.title}</h2>
+                  <p className="text-orange-500 font-semibold text-sm mt-0.5 font-sanskrit">{selectedBhajan.author}</p>
                 </div>
                 <button
                   onClick={() => setSelectedBhajan(null)}

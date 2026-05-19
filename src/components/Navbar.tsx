@@ -26,7 +26,6 @@ const navigation = [
     icon: <FaPrayingHands className="mr-2" />,
     submenu: [
       { name: 'Biography', href: '/prabhupada/biography' },
-      { name: 'Teachings', href: '/prabhupada/teachings' },
       { name: 'Books', href: '/resources/books' },
       { name: 'Lectures', href: '/prabhupada/lectures' },
       { name: 'Quotes', href: '/resources/prabhupada-quotes' },
@@ -38,15 +37,9 @@ const navigation = [
     href: '/spiritual-life',
     icon: <FaBook className="mr-2" />,
     submenu: [
-      { name: 'Daily Worship', href: '/spiritual-life/daily-worship' },
-      { name: 'Sadhana Tracker', href: '/spiritual-life/sadhana' },
-      { name: 'Festivals', href: '/spiritual-life/festivals' },
       { name: 'All Courses', href: '/courses' },
-      { name: 'Upcoming Courses', href: '/courses/upcoming' },
-      { name: 'Completed Courses', href: '/courses/completed' },
       { name: 'Spiritual Tours', href: '/spiritual-tours' },
       { name: 'Prasadam', href: '/prasadam' }
-
     ]
   },
   {
@@ -54,11 +47,9 @@ const navigation = [
     href: '/resources',
     icon: <FaLandmark className="mr-2" />,
     submenu: [
-      { name: 'Books', href: '/resources/books' },
       { name: 'Audio & Podcasts', href: '/resources/audio' },
       { name: 'Vaishnava Bhajans', href: '/resources/bhajans' },
       { name: 'Videos', href: '/resources/videos' },
-      { name: 'Articles', href: '/resources/articles' },
       { name: 'Photo Gallery', href: '/resources/gallery' }
     ]
   },
@@ -109,7 +100,7 @@ export default function Navbar() {
   return (
     <motion.header
       className={`fixed w-full z-50 transition-all duration-500 ${scrolled
-        ? 'glass-morphism py-2 shadow-lg'
+        ? 'bg-white/95 backdrop-blur-md py-2 shadow-lg border-b border-orange-100/50'
         : 'bg-white/40 backdrop-blur-md py-4'
         }`}
       initial={{ y: -100 }}

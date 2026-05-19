@@ -16,8 +16,9 @@ module.exports = {
         'iskcon-saffron': '#FF9933',
       },
       fontFamily: {
-        sanskrit: ['Poppins', 'sans-serif'],
-        primary: ['Inter', 'sans-serif'],
+        sanskrit: ['var(--font-tiro-bangla)', 'var(--font-poppins)', 'Poppins', 'serif'],
+        primary: ['var(--font-inter)', 'Inter', 'sans-serif'],
+        bangla: ['var(--font-tiro-bangla)', 'serif'],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

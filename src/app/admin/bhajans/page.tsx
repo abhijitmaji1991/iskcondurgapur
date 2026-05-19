@@ -159,13 +159,13 @@ export default function BhajansList() {
                                                         <FaMusic />
                                                     </div>
                                                     <div>
-                                                        <div className="font-bold text-gray-900">{bhajan.title}</div>
-                                                        <div className="text-xs text-gray-500 italic max-w-sm truncate">{bhajan.preview}</div>
+                                                        <div className="font-bold text-gray-900 font-sanskrit">{bhajan.title}</div>
+                                                        <div className="text-xs text-gray-500 italic max-w-sm truncate font-sanskrit">{bhajan.preview}</div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4 text-sm text-gray-600">
-                                                <span className="flex items-center gap-2">
+                                                <span className="flex items-center gap-2 font-sanskrit">
                                                     <FaUser className="text-gray-400 text-xs" />
                                                     {bhajan.author || 'Traditional'}
                                                 </span>

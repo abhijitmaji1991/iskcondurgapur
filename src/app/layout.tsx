@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Poppins } from 'next/font/google';
+import { Inter, Poppins, Tiro_Bangla } from 'next/font/google';
 import '@/styles/globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -16,6 +16,13 @@ const poppins = Poppins({
   weight: ['400', '500', '600', '700'],
   display: 'swap',
   variable: '--font-poppins',
+});
+
+const tiroBangla = Tiro_Bangla({
+  weight: '400',
+  subsets: ['bengali'],
+  display: 'swap',
+  variable: '--font-tiro-bangla',
 });
 
 export const viewport = {
@@ -77,7 +84,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
+    <html lang="en" className={`${inter.variable} ${poppins.variable} ${tiroBangla.variable}`}>
       <body className="min-h-screen bg-gradient-to-b from-white to-gray-50 flex flex-col">
         <AuthProvider>
           <Navbar />
