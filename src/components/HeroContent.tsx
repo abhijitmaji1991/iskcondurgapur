@@ -64,20 +64,7 @@ export default function HeroContent() {
                 </span>
               </motion.h1>
 
-              {/* Sanskrit Verse */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={isLoaded ? { opacity: 1 } : {}}
-                transition={{ delay: 0.6 }}
-                className="mb-6 p-4 bg-white/60 backdrop-blur-sm rounded-xl border-l-4 border-orange-500"
-              >
-                <p className="text-2xl sm:text-3xl font-sanskrit text-orange-700 mb-2">
-                  हरे कृष्ण हरे कृष्ण
-                </p>
-                <p className="text-lg font-sanskrit text-orange-600">
-                  कृष्ण कृष्ण हरे हरे
-                </p>
-              </motion.div>
+
 
               {/* Description */}
               <motion.p
