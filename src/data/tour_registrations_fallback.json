@@ -1,0 +1,18 @@
+[
+  {
+    "tourId": "1",
+    "tourName": "Vrindavan & Mathura Pilgrimage",
+    "name": "Abhijit Maji",
+    "email": "maji.abhijit@gmail.com",
+    "phone": "9876543210",
+    "seats": 1,
+    "date": "June 15-20, 2026",
+    "notes": "Senior citizen support required.",
+    "status": "approved",
+    "totalCost": 5000,
+    "_id": "reg_1779716449693",
+    "id": "reg_1779716449693",
+    "createdAt": "2026-05-25T13:40:49.693Z",
+    "updatedAt": "2026-05-25T13:41:13.691Z"
+  }
+]

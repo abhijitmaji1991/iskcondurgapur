@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import {
     FaCalendarAlt, FaClock, FaUsers, FaStar, FaSearch,
@@ -226,11 +227,12 @@ export default function CompletedCoursesPage() {
                                 <div className="flex flex-col lg:flex-row">
                                     {/* Image */}
                                     <div className={`relative lg:w-72 h-52 lg:h-auto bg-gradient-to-br ${course.bannerColor} shrink-0`}>
-                                        <img
+                                        <Image
                                             src={course.image}
                                             alt={course.title}
-                                            className="w-full h-full object-cover opacity-70"
-                                            onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                                            fill
+                                            className="object-cover opacity-70"
+                                            sizes="(max-width: 1024px) 100vw, 288px"
                                         />
                                         {/* Completed overlay */}
                                         <div className="absolute inset-0 bg-black/40 flex items-center justify-center">

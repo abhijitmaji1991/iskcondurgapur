@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import {
     FaCalendarAlt, FaClock, FaUsers, FaStar, FaSearch,
@@ -299,11 +300,12 @@ export default function UpcomingCoursesPage() {
                                 >
                                     {/* Image */}
                                     <div className={`relative h-44 bg-gradient-to-br ${course.bannerColor}`}>
-                                        <img
+                                        <Image
                                             src={course.image}
                                             alt={course.title}
-                                            className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
-                                            onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                                            fill
+                                            className="object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                         />
                                         {/* Badges */}
                                         <div className="absolute top-3 left-3 flex gap-2">

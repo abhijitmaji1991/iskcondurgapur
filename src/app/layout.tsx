@@ -3,6 +3,7 @@ import { Inter, Poppins, Tiro_Bangla } from 'next/font/google';
 import '@/styles/globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import NoticeBanner from '@/components/NoticeBanner';
 import { AuthProvider } from '@/context/auth/AuthContext';
 
 const inter = Inter({
@@ -88,6 +89,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-gradient-to-b from-white to-gray-50 flex flex-col">
         <AuthProvider>
           <Navbar />
+          <NoticeBanner />
           <main className="flex-grow">{children}</main>
           <Footer />
         </AuthProvider>

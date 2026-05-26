@@ -151,9 +151,9 @@ export default function EventsList() {
                                         <tr key={event._id} className="border-b border-gray-50 hover:bg-gray-50/30 transition-colors group">
                                             <td className="px-6 py-4">
                                                 <div className="flex items-center gap-4">
-                                                    <div className="w-12 h-12 rounded-lg bg-gray-100 overflow-hidden border border-gray-200 flex-shrink-0">
+                                                    <div className="w-12 h-12 rounded-lg bg-gray-100 overflow-hidden border border-gray-200 flex-shrink-0 relative">
                                                         <Image
-                                                            src={event.image || '/images/event-placeholder.jpg'}
+                                                            src={event.image || '/images/iskcon-logo.png'}
                                                             alt={event.title}
                                                             fill
                                                             className="object-cover"

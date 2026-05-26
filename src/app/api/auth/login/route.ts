@@ -59,10 +59,11 @@ export async function POST(request: Request) {
           twoFactorEnabled: false
         };
       } else {
-        if (dbError) {
-          throw dbError;
-        }
         ipBlocker.recordSuspiciousActivity(clientIp);
+        if (dbError) {
+          logger.warn('Database offline, failed login attempt:', { username, ip: clientIp });
+          throw new AppError('Invalid credentials', 401);
+        }
         logger.warn('Failed login attempt:', { username, ip: clientIp });
         throw new AppError('Invalid credentials', 401);
       }

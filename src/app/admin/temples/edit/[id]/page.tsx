@@ -55,6 +55,55 @@ export default function EditTemple() {
   });
 
   useEffect(() => {
+    const fetchTempleData = async () => {
+      setIsLoading(true);
+      setError('');
+
+      try {
+        const response = await fetch(`/api/temples/${id}`);
+        const result = await response.json();
+
+        if (response.ok) {
+          const temple = result.data;
+          // Parse timings if it's the combined string we store
+          let arati = '', darshan = '', classes = '';
+          if (temple.timings && typeof temple.timings === 'string') {
+            const parts = temple.timings.split(' | ');
+            parts.forEach((part: string) => {
+              if (part.startsWith('Arati: ')) arati = part.replace('Arati: ', '');
+              if (part.startsWith('Darshan: ')) darshan = part.replace('Darshan: ', '');
+              if (part.startsWith('Classes: ')) classes = part.replace('Classes: ', '');
+            });
+          }
+
+          setFormData({
+            name: temple.name || '',
+            location: temple.location || '',
+            country: temple.country || '',
+            description: temple.description || '',
+            image: temple.image || '',
+            contact: {
+              phone: temple.contact?.phone || '',
+              email: temple.contact?.email || '',
+              website: temple.contact?.website || ''
+            },
+            schedule: {
+              arati: arati || temple.timings || '', // fallback
+              darshan: darshan || '',
+              classes: classes || ''
+            }
+          });
+        } else {
+          setError(result.message || 'Temple not found');
+        }
+      } catch (err) {
+        console.error('Error fetching temple data:', err);
+        setError('Failed to load temple data');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
     // Check if the user is logged in
     const checkAuth = () => {
       const authToken = localStorage.getItem('iskcon_admin_token');
@@ -69,55 +118,6 @@ export default function EditTemple() {
 
     checkAuth();
   }, [id, router]);
-
-  const fetchTempleData = async () => {
-    setIsLoading(true);
-    setError('');
-
-    try {
-      const response = await fetch(`/api/temples/${id}`);
-      const result = await response.json();
-
-      if (response.ok) {
-        const temple = result.data;
-        // Parse timings if it's the combined string we store
-        let arati = '', darshan = '', classes = '';
-        if (temple.timings && typeof temple.timings === 'string') {
-          const parts = temple.timings.split(' | ');
-          parts.forEach((part: string) => {
-            if (part.startsWith('Arati: ')) arati = part.replace('Arati: ', '');
-            if (part.startsWith('Darshan: ')) darshan = part.replace('Darshan: ', '');
-            if (part.startsWith('Classes: ')) classes = part.replace('Classes: ', '');
-          });
-        }
-
-        setFormData({
-          name: temple.name || '',
-          location: temple.location || '',
-          country: temple.country || '',
-          description: temple.description || '',
-          image: temple.image || '',
-          contact: {
-            phone: temple.contact?.phone || '',
-            email: temple.contact?.email || '',
-            website: temple.contact?.website || ''
-          },
-          schedule: {
-            arati: arati || temple.timings || '', // fallback
-            darshan: darshan || '',
-            classes: classes || ''
-          }
-        });
-      } else {
-        setError(result.message || 'Temple not found');
-      }
-    } catch (err) {
-      console.error('Error fetching temple data:', err);
-      setError('Failed to load temple data');
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;

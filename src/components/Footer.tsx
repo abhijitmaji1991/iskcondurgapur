@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -9,6 +10,32 @@ import { FaFacebook, FaTwitter, FaYoutube, FaInstagram, FaMapMarkerAlt, FaPhone,
 export default function Footer() {
   const pathname = usePathname();
   const isAdmin = pathname?.startsWith('/admin');
+
+  const [settings, setSettings] = useState({
+    contactPhone: '+1 (310) 836-2676',
+    contactEmail: 'info.iskcondurgapur@gmail.com',
+    contactAddress: '3764 Watseka Avenue, Los Angeles, CA 90034',
+    facebookUrl: 'https://facebook.com/iskcon',
+    twitterUrl: 'https://twitter.com/iskcon',
+    instagramUrl: 'https://instagram.com/iskcon',
+    youtubeUrl: 'https://youtube.com/iskcon',
+  });
+
+  useEffect(() => {
+    if (isAdmin) return;
+    const fetchSettings = async () => {
+      try {
+        const response = await fetch('/api/settings');
+        const result = await response.json();
+        if (response.ok && result.data) {
+          setSettings(result.data);
+        }
+      } catch (err) {
+        console.error('Error fetching settings for footer:', err);
+      }
+    };
+    fetchSettings();
+  }, [isAdmin]);
 
   if (isAdmin) {
     return null;
@@ -68,15 +95,15 @@ export default function Footer() {
               <div className="space-y-1">
                 <p className="flex items-center text-xs text-gray-500">
                   <FaMapMarkerAlt className="mr-2 text-iskcon-orange" />
-                  <span>3764 Watseka Avenue, Los Angeles, CA 90034</span>
+                  <span>{settings.contactAddress}</span>
                 </p>
                 <p className="flex items-center text-xs text-gray-500">
                   <FaPhone className="mr-2 text-iskcon-orange" />
-                  <span>+1 (310) 836-2676</span>
+                  <span>{settings.contactPhone}</span>
                 </p>
                 <p className="flex items-center text-xs text-gray-500">
                   <FaEnvelope className="mr-2 text-iskcon-orange" />
-                  <span>info.iskcondurgapur@gmail.com</span>
+                  <span>{settings.contactEmail}</span>
                 </p>
               </div>
             </div>
@@ -113,10 +140,10 @@ export default function Footer() {
 
             <div className="flex space-x-2">
               {[
-                { icon: <FaFacebook size={12} />, href: 'https://facebook.com/iskcon' },
-                { icon: <FaTwitter size={12} />, href: 'https://twitter.com/iskcon' },
-                { icon: <FaInstagram size={12} />, href: 'https://instagram.com/iskcon' },
-                { icon: <FaYoutube size={12} />, href: 'https://youtube.com/iskcon' },
+                { icon: <FaFacebook size={12} />, href: settings.facebookUrl || 'https://facebook.com/iskcon' },
+                { icon: <FaTwitter size={12} />, href: settings.twitterUrl || 'https://twitter.com/iskcon' },
+                { icon: <FaInstagram size={12} />, href: settings.instagramUrl || 'https://instagram.com/iskcon' },
+                { icon: <FaYoutube size={12} />, href: settings.youtubeUrl || 'https://youtube.com/iskcon' },
               ].map((social, index) => (
                 <motion.a
                   key={index}

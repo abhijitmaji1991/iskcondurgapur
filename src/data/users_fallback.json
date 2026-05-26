@@ -1,0 +1,13 @@
+[
+  {
+    "_id": "local_admin_id",
+    "id": "local_admin_id",
+    "username": "admin",
+    "password": "$2b$10$LG9puq5Xf51pzi5UdZTL5.IZngmJom0e8hDjO..V3EJy3zGjyPeeK",
+    "role": "admin",
+    "email": "admin@iskcondurgapur.com",
+    "twoFactorEnabled": false,
+    "createdAt": "2026-05-25T14:38:30.523Z",
+    "updatedAt": "2026-05-25T14:38:30.523Z"
+  }
+]

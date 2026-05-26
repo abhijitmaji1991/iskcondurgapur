@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { FaUsers, FaCalendarAlt, FaBookOpen, FaImage, FaSignOutAlt, FaHome, FaMusic } from 'react-icons/fa';
+import { FaUsers, FaCalendarAlt, FaBookOpen, FaImage, FaSignOutAlt, FaHome, FaMusic, FaRoute, FaCog } from 'react-icons/fa';
 
 export default function AdminDashboard() {
   const router = useRouter();
@@ -15,7 +15,8 @@ export default function AdminDashboard() {
     resources: 0,
     alerts: 0,
     users: 0,
-    bhajans: 0
+    bhajans: 0,
+    tours: 0
   });
 
   useEffect(() => {
@@ -93,7 +94,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Quick Stats */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-8">
           <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:border-iskcon-orange/30 transition-all hover:shadow-md cursor-pointer group">
             <div className="flex justify-between items-start mb-4">
               <div className="p-3 bg-orange-50 text-iskcon-orange rounded-xl group-hover:bg-iskcon-orange group-hover:text-white transition-all">
@@ -148,10 +149,21 @@ export default function AdminDashboard() {
             <p className="text-gray-500 text-sm font-medium">Bhajans Book</p>
             <p className="text-3xl font-bold text-gray-900">{stats.bhajans || 0}</p>
           </div>
+
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:border-orange-500/30 transition-all hover:shadow-md cursor-pointer group" onClick={() => router.push('/admin/tours')}>
+            <div className="flex justify-between items-start mb-4">
+              <div className="p-3 bg-orange-50 text-orange-500 rounded-xl group-hover:bg-orange-500 group-hover:text-white transition-all">
+                <FaRoute size={24} />
+              </div>
+              <span className="text-xs font-bold text-orange-500 bg-orange-50 px-2 py-1 rounded-full">Tours</span>
+            </div>
+            <p className="text-gray-500 text-sm font-medium">Spiritual Tours</p>
+            <p className="text-3xl font-bold text-gray-900">{stats.tours || 0}</p>
+          </div>
         </div>
 
         {/* Admin Sections */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <Link href="/admin/temples" className="block transform hover:-translate-y-1 transition-all">
             <div className="bg-white rounded-2xl shadow-sm p-8 border border-gray-100 hover:shadow-xl group transition-all h-full flex flex-col">
               <div className="mb-6 text-iskcon-orange">
@@ -208,6 +220,36 @@ export default function AdminDashboard() {
               </p>
               <div className="flex items-center text-amber-500 font-bold text-sm tracking-wide group-hover:gap-2 transition-all">
                 GO TO PANEL <span className="text-lg">→</span>
+              </div>
+            </div>
+          </Link>
+
+          <Link href="/admin/tours" className="block transform hover:-translate-y-1 transition-all">
+            <div className="bg-white rounded-2xl shadow-sm p-8 border border-gray-100 hover:shadow-xl group transition-all h-full flex flex-col">
+              <div className="mb-6 text-orange-500">
+                <FaRoute size={40} className="group-hover:scale-110 transition-transform" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Spiritual Tours</h3>
+              <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">
+                Manage your sacred pilgrimages. Add new dynamic travel itineraries, update pricing, group sizes, coordinates, and inclusions.
+              </p>
+              <div className="flex items-center text-orange-500 font-bold text-sm tracking-wide group-hover:gap-2 transition-all">
+                GO TO PANEL <span className="text-lg">→</span>
+              </div>
+            </div>
+          </Link>
+
+          <Link href="/admin/settings" className="block transform hover:-translate-y-1 transition-all">
+            <div className="bg-white rounded-2xl shadow-sm p-8 border border-gray-100 hover:shadow-xl group transition-all h-full flex flex-col">
+              <div className="mb-6 text-orange-600">
+                <FaCog size={40} className="group-hover:scale-110 transition-transform" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Website Settings</h3>
+              <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">
+                Manage global configurations. Update general contact details, phone numbers, email addresses, social media links, and notice banners dynamically.
+              </p>
+              <div className="flex items-center text-orange-600 font-bold text-sm tracking-wide group-hover:gap-2 transition-all">
+                GO TO SETTINGS <span className="text-lg">→</span>
               </div>
             </div>
           </Link>

@@ -3,6 +3,7 @@ import dbConnect from '@/utils/db';
 import Bhajan from '@/models/bhajan.model';
 import { handleApiError, apiSuccess, AppError } from '@/utils/errorHandler';
 import { bhajansFallbackDb } from '@/utils/bhajansFallbackDb';
+import { verifyAdmin } from '@/utils/authHelper';
 
 export async function GET(
     request: NextRequest,
@@ -34,10 +35,7 @@ export async function PUT(
     { params }: { params: { id: string } }
 ) {
     try {
-        const authToken = request.cookies.get('iskcon_admin_token');
-        if (!authToken) {
-            throw new AppError('Unauthorized', 401);
-        }
+        verifyAdmin(request);
 
         try {
             await dbConnect();
@@ -66,10 +64,7 @@ export async function DELETE(
     { params }: { params: { id: string } }
 ) {
     try {
-        const authToken = request.cookies.get('iskcon_admin_token');
-        if (!authToken) {
-            throw new AppError('Unauthorized', 401);
-        }
+        verifyAdmin(request);
 
         try {
             await dbConnect();

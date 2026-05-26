@@ -39,6 +39,42 @@ export default function EditBhajan() {
     const [errors, setErrors] = useState<Partial<BhajanForm>>({});
 
     useEffect(() => {
+        const fetchBhajanDetails = async () => {
+            try {
+                const response = await fetch(`/api/bhajans/${id}`);
+                const result = await response.json();
+
+                if (response.ok && result.data) {
+                    const bhajan = result.data;
+                    setFormData({
+                        title: bhajan.title || '',
+                        author: bhajan.author || '',
+                        preview: bhajan.preview || '',
+                        audioUrl: bhajan.audioUrl || '',
+                        isPublished: bhajan.isPublished !== undefined ? bhajan.isPublished : true
+                    });
+
+                    if (bhajan.lyrics && bhajan.lyrics.length > 0) {
+                        const mappedVerses = bhajan.lyrics.map((verse: any) => ({
+                            devanagariText: verse.devanagari ? verse.devanagari.join('\n') : '',
+                            romanText: verse.roman ? verse.roman.join('\n') : '',
+                            translationText: verse.translation ? verse.translation.join('\n') : ''
+                        }));
+                        setVerses(mappedVerses);
+                    }
+                } else {
+                    alert('Failed to load bhajan details');
+                    router.push('/admin/bhajans');
+                }
+            } catch (err) {
+                console.error('Error loading bhajan details:', err);
+                alert('Failed to load bhajan details due to a network error');
+                router.push('/admin/bhajans');
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
         const checkAuth = () => {
             const authToken = localStorage.getItem('iskcon_admin_token');
             if (!authToken) {
@@ -50,42 +86,6 @@ export default function EditBhajan() {
         };
         checkAuth();
     }, [router, id]);
-
-    const fetchBhajanDetails = async () => {
-        try {
-            const response = await fetch(`/api/bhajans/${id}`);
-            const result = await response.json();
-
-            if (response.ok && result.data) {
-                const bhajan = result.data;
-                setFormData({
-                    title: bhajan.title || '',
-                    author: bhajan.author || '',
-                    preview: bhajan.preview || '',
-                    audioUrl: bhajan.audioUrl || '',
-                    isPublished: bhajan.isPublished !== undefined ? bhajan.isPublished : true
-                });
-
-                if (bhajan.lyrics && bhajan.lyrics.length > 0) {
-                    const mappedVerses = bhajan.lyrics.map((verse: any) => ({
-                        devanagariText: verse.devanagari ? verse.devanagari.join('\n') : '',
-                        romanText: verse.roman ? verse.roman.join('\n') : '',
-                        translationText: verse.translation ? verse.translation.join('\n') : ''
-                    }));
-                    setVerses(mappedVerses);
-                }
-            } else {
-                alert('Failed to load bhajan details');
-                router.push('/admin/bhajans');
-            }
-        } catch (err) {
-            console.error('Error loading bhajan details:', err);
-            alert('Failed to load bhajan details due to a network error');
-            router.push('/admin/bhajans');
-        } finally {
-            setIsLoading(false);
-        }
-    };
 
     const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value, type } = e.target as HTMLInputElement;

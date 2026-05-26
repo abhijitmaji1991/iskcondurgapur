@@ -111,22 +111,22 @@ const popularSeries = [
 ];
 
 export default function AudioPage() {
+  const INITIAL_VOLUME = 0.8;
   const [searchQuery, setSearchQuery] = useState('');
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTrack, setCurrentTrack] = useState<FeaturedContent | null>(null);
-  const [volume, setVolume] = useState(0.8);
+  const [volume, setVolume] = useState(INITIAL_VOLUME);
   const [isMuted, setIsMuted] = useState(false);
   const [trackProgress, setTrackProgress] = useState(0);
   const [trackDuration, setTrackDuration] = useState(0);
   const [favorites, setFavorites] = useState<string[]>([]);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const progressIntervalRef = useRef<any>(null);
 
   useEffect(() => {
     // Initialize audio client instance
     audioRef.current = new Audio();
-    audioRef.current.volume = volume;
+    audioRef.current.volume = INITIAL_VOLUME;
 
     const handleLoadedMetadata = () => {
       if (audioRef.current) setTrackDuration(audioRef.current.duration);
@@ -152,7 +152,6 @@ export default function AudioPage() {
         audioRef.current.removeEventListener('timeupdate', handleTimeUpdate);
         audioRef.current.removeEventListener('ended', handleEnded);
       }
-      clearInterval(progressIntervalRef.current);
     };
   }, []);
 

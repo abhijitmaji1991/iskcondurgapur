@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '@/context/auth/AuthContext';
 import { motion } from 'framer-motion';
 import { FaPray, FaBookOpen, FaChartLine, FaSave, FaPlus, FaMinus, FaHistory } from 'react-icons/fa';
@@ -64,7 +64,7 @@ export default function SadhanaTrackerPage() {
         }
     };
 
-    const fetchHistory = async () => {
+    const fetchHistory = useCallback(async () => {
         try {
             const response = await fetch(`/api/sadhana/history?user_id=${user?.id || 'demo_user'}`);
             const data = await response.json();
@@ -74,11 +74,11 @@ export default function SadhanaTrackerPage() {
         } catch (error) {
             console.error('Failed to fetch history');
         }
-    };
+    }, [user?.id]);
 
     useEffect(() => {
         fetchHistory();
-    }, [user]);
+    }, [fetchHistory]);
 
     return (
         <div className="min-h-screen pt-28 pb-12 px-4 bg-orange-50 font-poppins">

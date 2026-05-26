@@ -1,0 +1,13 @@
+﻿chrome.exe : 
+At line:1 char:1
++ & 'C:\Program Files\Google\Chrome\Application\chrome.exe' --remote-de ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+DevTools remote debugging requires a non-default data directory. Specify this using --user-data-dir.
+Created TensorFlow Lite XNNPACK delegate for CPU.
+[9888:27604:0525/183523.925:ERROR:components\signin\internal\identity_manager\account_info_fetcher_gaia.cc:67] 
+OnGetTokenFailure: Invalid credentials (credentials rejected by server).
+[9888:33580:0525/183526.058:ERROR:google_apis\gcm\engine\registration_request.cc:291] Registration response error 
+message: DEPRECATED_ENDPOINT

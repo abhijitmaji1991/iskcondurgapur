@@ -46,7 +46,7 @@ const nextConfig = {
       },
       {
         // Security headers on all routes
-        source: '/(.*)',
+        source: '/:path*',
         headers: [
           { key: 'X-Content-Type-Options', value: 'nosniff' },
           { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
@@ -57,10 +57,6 @@ const nextConfig = {
     ];
   },
 
-  i18n: {
-    locales: ['en'],
-    defaultLocale: 'en',
-  },
 
   // ─── Build output compression ─────────────────────────────────────────────
   compress: true,

@@ -1,0 +1,21 @@
+[
+  {
+    "_id": "seed_temple_durgapur",
+    "name": "ISKCON Durgapur",
+    "location": "Durgapur, West Bengal",
+    "country": "India",
+    "image": "/images/iskcon-logo.png",
+    "description": "Vibrant spiritual community center in Durgapur hosting regular Sunday feasts, youth programs, and community welfare initiatives.",
+    "address": "Sagarbhanga, Durgapur, West Bengal 713211",
+    "coordinates": {
+      "lat": 23.4912,
+      "lng": 87.3119
+    },
+    "contact": {
+      "email": "info@iskcondurgapur.com",
+      "phone": "+91 98765 43210",
+      "website": "https://www.iskcondurgapur.com"
+    },
+    "timings": "4:30 AM - 1:00 PM, 4:15 PM - 8:30 PM"
+  }
+]

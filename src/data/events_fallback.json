@@ -1,0 +1,45 @@
+[
+  {
+    "_id": "seed_event_janmashtami",
+    "title": "Padmini Ekadasi",
+    "description": "Fasting From Grains",
+    "date": "2026-05-26T18:30:00.000Z",
+    "location": "",
+    "category": "Festival",
+    "image": "/images/iskcon-logo.png",
+    "organizer": "ISKCON Durgapur Festival Committee",
+    "registrationLink": "",
+    "isFeatured": true,
+    "createdAt": "2026-05-19T12:15:34.062Z",
+    "updatedAt": "2026-05-25T16:14:38.866Z",
+    "time": "00:00"
+  },
+  {
+    "_id": "seed_event_rathayatra",
+    "title": "Jagannath Ratha Yatra",
+    "description": "The Festival of Chariots. Join thousands of devotees in pulling the grand chariot of Lord Jagannath, Baladeva, and Subhadra through the streets of Durgapur.",
+    "date": "2026-07-18T12:15:34.062Z",
+    "location": "Durgapur City Centre to Sagarbhanga Temple",
+    "category": "Festival",
+    "image": "/images/iskcon-logo.png",
+    "organizer": "ISKCON Durgapur Ratha Yatra Committee",
+    "registrationLink": "",
+    "isFeatured": true,
+    "createdAt": "2026-05-19T12:15:34.062Z",
+    "updatedAt": "2026-05-19T12:15:34.062Z"
+  },
+  {
+    "_id": "seed_event_sundayfeast",
+    "title": "Weekly Sunday Feast Program",
+    "description": "Every Sunday afternoon, featuring bhajan, an enlightening lecture on Bhagavad-gita, community prayers, congregational chanting, and a free multicourse vegetarian feast.",
+    "date": "2026-05-23T12:15:34.062Z",
+    "location": "Sankirtan Hall, ISKCON Durgapur",
+    "category": "Program",
+    "image": "/images/iskcon-logo.png",
+    "organizer": "ISKCON Durgapur Congregation Department",
+    "registrationLink": "",
+    "isFeatured": false,
+    "createdAt": "2026-05-19T12:15:34.062Z",
+    "updatedAt": "2026-05-19T12:15:34.062Z"
+  }
+]

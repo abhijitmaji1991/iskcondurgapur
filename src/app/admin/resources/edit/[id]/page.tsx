@@ -42,6 +42,38 @@ export default function EditResource() {
     const [apiError, setApiError] = useState<string | null>(null);
 
     useEffect(() => {
+        const fetchResourceData = async () => {
+            setIsLoading(true);
+            setApiError(null);
+            try {
+                const response = await fetch(`/api/resources/${id}`);
+                const result = await response.json();
+
+                if (response.ok) {
+                    const resource = result.data;
+                    setFormData({
+                        title: resource.title || '',
+                        type: resource.type || 'Article',
+                        category: resource.category || '',
+                        description: resource.description || '',
+                        content: resource.content || '',
+                        link: resource.link || '',
+                        author: resource.author || '',
+                        thumbnail: resource.thumbnail || '',
+                        tags: Array.isArray(resource.tags) ? resource.tags.join(', ') : '',
+                        isPublished: resource.isPublished !== undefined ? resource.isPublished : true
+                    });
+                } else {
+                    setApiError(result.message || 'Resource not found');
+                }
+            } catch (err) {
+                console.error('Error fetching resource data:', err);
+                setApiError('Failed to load resource data');
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
         const checkAuth = () => {
             const authToken = localStorage.getItem('iskcon_admin_token');
             if (!authToken) {
@@ -53,38 +85,6 @@ export default function EditResource() {
         };
         checkAuth();
     }, [id, router]);
-
-    const fetchResourceData = async () => {
-        setIsLoading(true);
-        setApiError(null);
-        try {
-            const response = await fetch(`/api/resources/${id}`);
-            const result = await response.json();
-
-            if (response.ok) {
-                const resource = result.data;
-                setFormData({
-                    title: resource.title || '',
-                    type: resource.type || 'Article',
-                    category: resource.category || '',
-                    description: resource.description || '',
-                    content: resource.content || '',
-                    link: resource.link || '',
-                    author: resource.author || '',
-                    thumbnail: resource.thumbnail || '',
-                    tags: Array.isArray(resource.tags) ? resource.tags.join(', ') : '',
-                    isPublished: resource.isPublished !== undefined ? resource.isPublished : true
-                });
-            } else {
-                setApiError(result.message || 'Resource not found');
-            }
-        } catch (err) {
-            console.error('Error fetching resource data:', err);
-            setApiError('Failed to load resource data');
-        } finally {
-            setIsLoading(false);
-        }
-    };
 
     const validateForm = () => {
         const newErrors: Partial<ResourceForm> = {};

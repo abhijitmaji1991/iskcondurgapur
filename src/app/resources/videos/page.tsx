@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   FaYoutube, FaPlay, FaTimes, FaSpinner,
@@ -248,11 +249,12 @@ export default function VideosPage() {
                   >
                     {/* Thumbnail */}
                     <div className="relative aspect-video bg-gray-100 overflow-hidden">
-                      <img
+                      <Image
                         src={`https://i.ytimg.com/vi/${video.videoId}/hqdefault.jpg`}
                         alt={video.title}
-                        loading="lazy"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
                       />
                       <div className="absolute inset-0 bg-black/25 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-250">
                         <div className="bg-red-600 text-white rounded-full p-3.5 shadow-xl transform group-hover:scale-105 transition-transform duration-200">

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaWhatsapp, FaFacebook, FaYoutube } from 'react-icons/fa';
 import { submitContact } from '@/lib/api';
@@ -13,6 +13,30 @@ export default function ContactPage() {
         subject: '',
         message: ''
     });
+
+    const [settings, setSettings] = useState({
+        contactPhone: '919563786224',
+        contactEmail: 'info.iskcondurgapur@gmail.com',
+        contactAddress: 'ISKCON Durgapur\nNetaji Subhas Chandra Bose Road, A-Zone,\nDurgapur, West Bengal, India 713204',
+        whatsappNumber: '919563786224',
+        facebookUrl: 'https://www.facebook.com/profile.php?id=61571919518223',
+        youtubeUrl: 'https://www.youtube.com/@iskcondurgapurofficial957',
+    });
+
+    useEffect(() => {
+        const fetchSettings = async () => {
+            try {
+                const response = await fetch('/api/settings');
+                const result = await response.json();
+                if (response.ok && result.data) {
+                    setSettings(result.data);
+                }
+            } catch (err) {
+                console.error('Error fetching settings for contact page:', err);
+            }
+        };
+        fetchSettings();
+    }, []);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState<null | 'success' | 'error'>(null);
@@ -91,10 +115,8 @@ export default function ContactPage() {
                                 </div>
                                 <div>
                                     <h3 className="font-semibold text-gray-800">Our Location</h3>
-                                    <p className="text-gray-600 mt-1">
-                                        ISKCON Durgapur<br />
-                                        Netaji Subhas Chandra Bose Road,A-Zone,<br />
-                                        Durgapur, West Bengal, India 713204
+                                    <p className="text-gray-600 mt-1 whitespace-pre-line">
+                                        {settings.contactAddress}
                                     </p>
                                 </div>
                             </div>
@@ -104,7 +126,7 @@ export default function ContactPage() {
                                 </div>
                                 <div>
                                     <h3 className="font-semibold text-gray-800">Email</h3>
-                                    <p className="text-gray-600 mt-1">info.iskcondurgapur@gmail.com</p>
+                                    <p className="text-gray-600 mt-1">{settings.contactEmail}</p>
                                 </div>
                             </div>
                         </div>
@@ -112,15 +134,21 @@ export default function ContactPage() {
                         <div className="mt-12">
                             <h3 className="text-xl font-bold text-gray-800 mb-6">Connect With Us</h3>
                             <div className="flex space-x-4">
-                                <a href="https://www.facebook.com/profile.php?id=61571919518223" target="_blank" rel="noopener noreferrer" className="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition-colors">
-                                    <FaFacebook className="text-xl" />
-                                </a>
-                                <a href="https://www.youtube.com/@iskcondurgapurofficial957" target="_blank" rel="noopener noreferrer" className="bg-red-600 text-white p-3 rounded-full hover:bg-red-700 transition-colors">
-                                    <FaYoutube className="text-xl" />
-                                </a>
-                                <a href="https://wa.me/919563786224" target="_blank" rel="noopener noreferrer" className="bg-green-500 text-white p-3 rounded-full hover:bg-green-600 transition-colors">
-                                    <FaWhatsapp className="text-xl" />
-                                </a>
+                                {settings.facebookUrl && (
+                                    <a href={settings.facebookUrl} target="_blank" rel="noopener noreferrer" className="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition-colors">
+                                        <FaFacebook className="text-xl" />
+                                    </a>
+                                )}
+                                {settings.youtubeUrl && (
+                                    <a href={settings.youtubeUrl} target="_blank" rel="noopener noreferrer" className="bg-red-600 text-white p-3 rounded-full hover:bg-red-700 transition-colors">
+                                        <FaYoutube className="text-xl" />
+                                    </a>
+                                )}
+                                {settings.whatsappNumber && (
+                                    <a href={`https://wa.me/${settings.whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="bg-green-500 text-white p-3 rounded-full hover:bg-green-600 transition-colors">
+                                        <FaWhatsapp className="text-xl" />
+                                    </a>
+                                )}
                             </div>
                         </div>
                     </div>

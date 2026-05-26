@@ -1,8 +1,9 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import dbConnect from '@/utils/db';
 import Bhajan from '@/models/bhajan.model';
-import { handleApiError, apiSuccess, AppError } from '@/utils/errorHandler';
+import { handleApiError, apiSuccess } from '@/utils/errorHandler';
 import { bhajansFallbackDb } from '@/utils/bhajansFallbackDb';
+import { verifyAdmin } from '@/utils/authHelper';
 
 // ─── Module-level cache ──────────────────────────────────────────────────
 const CACHE_TTL_MS = 60_000; // 60 seconds
@@ -204,10 +205,7 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
     try {
-        const authToken = request.cookies.get('iskcon_admin_token')?.value;
-        if (!authToken) {
-            throw new AppError('Unauthorized', 401);
-        }
+        verifyAdmin(request);
 
         try {
             await dbConnect();

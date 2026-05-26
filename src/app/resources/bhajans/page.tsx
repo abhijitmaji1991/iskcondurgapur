@@ -178,12 +178,13 @@ const BHAJANS: Bhajan[] = [
 ];
 
 export default function BhajansPage() {
+  const INITIAL_VOLUME = 0.8;
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedBhajan, setSelectedBhajan] = useState<Bhajan | null>(null);
   const [activeAuthor, setActiveAuthor] = useState('All');
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTrack, setCurrentTrack] = useState<string | null>(null);
-  const [volume, setVolume] = useState(0.8);
+  const [volume, setVolume] = useState(INITIAL_VOLUME);
   const [isMuted, setIsMuted] = useState(false);
   const [bhajans, setBhajans] = useState<Bhajan[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -276,7 +277,7 @@ export default function BhajansPage() {
   useEffect(() => {
     // Initialize audio instance
     audioRef.current = new Audio();
-    audioRef.current.volume = volume;
+    audioRef.current.volume = INITIAL_VOLUME;
 
     const handleEnded = () => {
       setIsPlaying(false);

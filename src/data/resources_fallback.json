@@ -1,0 +1,61 @@
+[
+  {
+    "_id": "seed_resource_bg",
+    "title": "Bhagavad-gita As It Is",
+    "type": "Book",
+    "category": "Scripture",
+    "description": "The largest-selling and most widely used edition of the Gita in the world, with original Sanskrit symbols, Roman transliterations, English equivalents, translations and elaborate purports by His Divine Grace A.C. Bhaktivedanta Swami Prabhupada.",
+    "content": "Bhagavad-gita As It Is is the primary sacred text of ISKCON...",
+    "link": "https://vedabase.io/en/library/bg/",
+    "author": "A.C. Bhaktivedanta Swami Prabhupada",
+    "thumbnail": "/images/iskcon-logo.png",
+    "tags": [
+      "Gita",
+      "Philosophy",
+      "Sanskrit",
+      "Wisdom"
+    ],
+    "isPublished": true,
+    "createdAt": "2026-05-19T12:07:55.623Z",
+    "updatedAt": "2026-05-19T12:07:55.623Z"
+  },
+  {
+    "_id": "seed_resource_japa",
+    "title": "Mantra Meditation: A Practical Guide",
+    "type": "Article",
+    "category": "Sadhana",
+    "description": "An introductory guide to chanting the Hare Krishna Maha Mantra, explaining the benefits of mantra meditation, bead chanting (japa), and practical tips for beginners.",
+    "content": "The Hare Krishna Maha Mantra: Hare Krishna, Hare Krishna, Krishna Krishna, Hare Hare / Hare Rama, Hare Rama, Rama Rama, Hare Hare...",
+    "link": "",
+    "author": "ISKCON Durgapur Education Desk",
+    "thumbnail": "/images/iskcon-logo.png",
+    "tags": [
+      "Meditation",
+      "Japa",
+      "Chanting",
+      "Sadhana"
+    ],
+    "isPublished": true,
+    "createdAt": "2026-05-19T12:07:55.623Z",
+    "updatedAt": "2026-05-19T12:07:55.623Z"
+  },
+  {
+    "_id": "seed_resource_intro_video",
+    "title": "Introduction to Krishna Consciousness",
+    "type": "Video",
+    "category": "Introduction",
+    "description": "A short introductory video exploring the origins, philosophy, and global community of the International Society for Krishna Consciousness (ISKCON).",
+    "content": "",
+    "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "author": "ISKCON Communications",
+    "thumbnail": "/images/iskcon-logo.png",
+    "tags": [
+      "Introduction",
+      "Video",
+      "Philosophy"
+    ],
+    "isPublished": true,
+    "createdAt": "2026-05-19T12:07:55.623Z",
+    "updatedAt": "2026-05-19T12:07:55.623Z"
+  }
+]
