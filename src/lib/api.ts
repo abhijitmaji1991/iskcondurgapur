@@ -146,6 +146,31 @@ export async function getResources(params: Record<string, string> = {}) {
     return apiFetch<{ status: string; data: ApiResource[]; meta?: object }>(`/resources${qs ? `?${qs}` : ''}`);
 }
 
+// ── Lectures ──────────────────────────────────────────────────────────────
+export interface ApiLecture {
+    _id: string;
+    code: string;
+    title: string;
+    date: string;
+    location: string;
+    year: string;
+    type: 'Lecture' | 'Conversation' | 'Morning Walk' | 'Bhajan';
+    scripture?: string;
+    verses?: string;
+    sanskrit?: string;
+    translation?: string;
+    duration: string;
+    audioUrl: string;
+    summary: string;
+    transcript: string;
+}
+
+export async function getLectures(params: Record<string, string> = {}) {
+    const qs = new URLSearchParams(params).toString();
+    return apiFetch<{ message: string; data: ApiLecture[] }>(`/lectures${qs ? `?${qs}` : ''}`);
+}
+
+
 // ── Dashboard (admin) ─────────────────────────────────────────────────────
 export async function getDashboardStats() {
     return apiFetch<{ status: string; data: object }>('/dashboard/stats');
