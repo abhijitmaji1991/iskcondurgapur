@@ -934,7 +934,7 @@ const LecturesClient: React.FC = () => {
                                     <FaBookOpen className="text-stone-300 text-5xl mx-auto" />
                                     <h3 className="text-lg font-bold font-serif text-stone-850">No recordings found</h3>
                                     <p className="text-stone-500 max-w-md mx-auto text-sm">
-                                        We couldn't find any results matching your search "{searchText}" or current filters. Try adjusting your parameters.
+                                        We couldn&apos;t find any results matching your search &quot;{searchText}&quot; or current filters. Try adjusting your parameters.
                                     </p>
                                     <button
                                         onClick={() => {
