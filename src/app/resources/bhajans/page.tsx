@@ -199,7 +199,7 @@ export default function BhajansPage() {
       try {
         const res = await fetch('/api/bhajans');
         const result = await res.json();
-        if (res.ok && result.data && result.data.length > 0) {
+        if (res.ok && result.data) {
           const mapped = result.data.map((item: any) => ({
             id: item._id,
             title: item.title,
@@ -210,11 +210,11 @@ export default function BhajansPage() {
           }));
           setBhajans(mapped);
         } else {
-          setBhajans(BHAJANS);
+          setBhajans([]);
         }
       } catch (err) {
         console.error("Error loading dynamic bhajans:", err);
-        setBhajans(BHAJANS);
+        setBhajans([]);
       } finally {
         setIsLoading(false);
       }

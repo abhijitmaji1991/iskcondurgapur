@@ -183,10 +183,7 @@ export async function GET(request: NextRequest) {
             await dbConnect();
             let bhajans = await Bhajan.find({}).sort({ title: 1 }).lean(); // .lean() = plain JS objects, ~30% faster
 
-            if (bhajans.length === 0) {
-                await Bhajan.insertMany(SEED_BHAJANS);
-                bhajans = await Bhajan.find({}).sort({ title: 1 }).lean();
-            }
+            // Auto-seeding disabled to allow empty songbook
 
             cachedBhajans = bhajans;
             cacheExpiresAt = Date.now() + CACHE_TTL_MS;
