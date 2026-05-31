@@ -22,7 +22,7 @@ interface Event {
 
 export default function EventDetailsPage() {
   const params = useParams();
-  const id = params.id as string;
+  const id = params?.id as string;
   const [event, setEvent] = useState<Event | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
