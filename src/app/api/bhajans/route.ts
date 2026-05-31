@@ -5,16 +5,8 @@ import { handleApiError, apiSuccess } from '@/utils/errorHandler';
 import { bhajansFallbackDb } from '@/utils/bhajansFallbackDb';
 import { verifyAdmin } from '@/utils/authHelper';
 
-// ─── Module-level cache ──────────────────────────────────────────────────
-const CACHE_TTL_MS = 60_000; // 60 seconds
-let cachedBhajans: any[] | null = null;
-let cacheExpiresAt = 0;
-
-// Helper to invalidate cache after write operations
-function invalidateBhajanCache() {
-    cachedBhajans = null;
-    cacheExpiresAt = 0;
-}
+// ─── No Module-level cache to prevent serverless inconsistency ─────────────
+export const dynamic = 'force-dynamic';
 
 const SEED_BHAJANS = [
   {
@@ -173,26 +165,16 @@ const SEED_BHAJANS = [
 
 export async function GET(request: NextRequest) {
     try {
-        // Return from cache if fresh
-        if (cachedBhajans && Date.now() < cacheExpiresAt) {
-            const res = apiSuccess(cachedBhajans);
-            return res;
-        }
-
         try {
             await dbConnect();
             let bhajans = await Bhajan.find({}).sort({ title: 1 }).lean(); // .lean() = plain JS objects, ~30% faster
 
             // Auto-seeding disabled to allow empty songbook
 
-            cachedBhajans = bhajans;
-            cacheExpiresAt = Date.now() + CACHE_TTL_MS;
             return apiSuccess(bhajans);
         } catch (dbErr) {
             console.warn('Database offline, serving persistent fallback JSON database:', dbErr);
             const bhajans = bhajansFallbackDb.getAll();
-            cachedBhajans = bhajans;
-            cacheExpiresAt = Date.now() + CACHE_TTL_MS;
             return apiSuccess(bhajans);
         }
     } catch (error) {
@@ -210,7 +192,6 @@ export async function POST(request: NextRequest) {
             const bhajan = await Bhajan.create(body);
 
             // Invalidate the list cache so the new entry appears immediately
-            invalidateBhajanCache();
 
             return apiSuccess(bhajan, 'Bhajan created successfully', 201);
         } catch (dbErr) {
@@ -219,7 +200,6 @@ export async function POST(request: NextRequest) {
             const bhajan = bhajansFallbackDb.create(body);
 
             // Invalidate the list cache
-            invalidateBhajanCache();
 
             return apiSuccess(bhajan, 'Bhajan created successfully (Local Storage Mode)', 201);
         }

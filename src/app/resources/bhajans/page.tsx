@@ -197,7 +197,7 @@ export default function BhajansPage() {
   useEffect(() => {
     const fetchBhajans = async () => {
       try {
-        const res = await fetch('/api/bhajans');
+        const res = await fetch('/api/bhajans', { cache: 'no-store' });
         const result = await res.json();
         if (res.ok && result.data) {
           const mapped = result.data.map((item: any) => ({
