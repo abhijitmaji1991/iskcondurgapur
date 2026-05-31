@@ -1,23 +1,50 @@
 import { NextRequest } from 'next/server';
 import dbConnect from '@/utils/db';
-import Setting from '@/models/setting.model';
+import Settings from '@/models/settings.model';
 import { handleApiError, apiSuccess } from '@/utils/errorHandler';
 import { verifyAdmin } from '@/utils/authHelper';
-import { settingsFallbackDb, DEFAULT_SETTINGS } from '@/utils/settingsFallbackDb';
+import fs from 'fs';
+import path from 'path';
+
+// Minimal JSON fallback for settings
+const SETTINGS_FALLBACK_FILE = path.join(process.cwd(), 'data', 'settings.json');
+const getFallbackSettings = () => {
+    try {
+        if (fs.existsSync(SETTINGS_FALLBACK_FILE)) {
+            return JSON.parse(fs.readFileSync(SETTINGS_FALLBACK_FILE, 'utf8'));
+        }
+    } catch (e) {}
+    return {
+        contactPhone: '', contactEmail: '', contactAddress: '',
+        whatsappNumber: '', facebookUrl: '', youtubeUrl: '',
+        twitterUrl: '', instagramUrl: '', noticeBannerText: '',
+        noticeBannerEnabled: false
+    };
+};
+
+const saveFallbackSettings = (data: any) => {
+    try {
+        const dir = path.dirname(SETTINGS_FALLBACK_FILE);
+        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+        fs.writeFileSync(SETTINGS_FALLBACK_FILE, JSON.stringify(data, null, 2), 'utf8');
+    } catch (e) {
+        console.error('Failed to save fallback settings', e);
+    }
+};
 
 export async function GET(request: NextRequest) {
     try {
         try {
             await dbConnect();
-            let setting = await Setting.findOne({});
-            if (!setting) {
-                setting = await Setting.create(DEFAULT_SETTINGS);
+            let settings = await Settings.findOne();
+            if (!settings) {
+                // Return default empty settings if none exist
+                settings = new Settings({});
             }
-            return apiSuccess(setting);
+            return apiSuccess(settings);
         } catch (dbErr) {
-            console.warn('Database offline, serving persistent fallback settings JSON:', dbErr);
-            const setting = settingsFallbackDb.get();
-            return apiSuccess(setting);
+            console.warn('Database offline, using fallback settings:', dbErr);
+            return apiSuccess(getFallbackSettings());
         }
     } catch (error) {
         return handleApiError(error);
@@ -28,22 +55,23 @@ export async function PUT(request: NextRequest) {
     try {
         verifyAdmin(request);
         const body = await request.json();
-
+        
         try {
             await dbConnect();
-            let setting = await Setting.findOne({});
-            if (setting) {
-                setting = await Setting.findByIdAndUpdate(setting._id, body, { new: true });
+            // There should only be one settings document
+            let settings = await Settings.findOne();
+            if (settings) {
+                settings = await Settings.findByIdAndUpdate(settings._id, body, { new: true });
             } else {
-                setting = await Setting.create(body);
+                settings = await Settings.create(body);
             }
-            // Sync with fallback DB
-            settingsFallbackDb.update(body);
-            return apiSuccess(setting, 'Settings updated successfully');
+            return apiSuccess(settings, 'Settings updated successfully');
         } catch (dbErr) {
-            console.warn('Database offline, storing settings in fallback JSON database:', dbErr);
-            const setting = settingsFallbackDb.update(body);
-            return apiSuccess(setting, 'Settings updated successfully in fallback database');
+            console.warn('Database offline, updating fallback settings:', dbErr);
+            const current = getFallbackSettings();
+            const updated = { ...current, ...body };
+            saveFallbackSettings(updated);
+            return apiSuccess(updated, 'Settings updated successfully in fallback database');
         }
     } catch (error) {
         return handleApiError(error);
