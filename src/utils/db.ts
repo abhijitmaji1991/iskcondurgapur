@@ -20,7 +20,7 @@ async function dbConnect() {
     if (!cached.promise) {
         const opts = {
             bufferCommands: false,
-            serverSelectionTimeoutMS: 1000, // Fail-fast in 1 second if MongoDB is offline, avoiding 30s lags!
+            serverSelectionTimeoutMS: 5000, // 5 seconds is safer for serverless cold starts
         };
 
         cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
