@@ -51,16 +51,16 @@ const AudioVisualizer: React.FC<{ isPlaying: boolean }> = ({ isPlaying }) => {
 
 // Shimmering Skeleton Loader Card
 const SkeletonCard: React.FC = () => (
-    <div className="bg-white rounded-2xl border border-stone-150 p-5 sm:p-6 space-y-4 animate-pulse">
+    <div className="bg-white/5 rounded-2xl border border-white/10 p-5 sm:p-6 space-y-4 animate-pulse">
         <div className="flex gap-2">
-            <div className="h-5 w-20 bg-stone-200 rounded-md"></div>
-            <div className="h-5 w-24 bg-stone-200 rounded-md"></div>
-            <div className="h-5 w-28 bg-stone-200 rounded-md"></div>
+            <div className="h-5 w-20 bg-white/10 rounded-md"></div>
+            <div className="h-5 w-24 bg-white/10 rounded-md"></div>
+            <div className="h-5 w-28 bg-white/10 rounded-md"></div>
         </div>
-        <div className="h-6 w-3/4 bg-stone-200 rounded-lg"></div>
+        <div className="h-6 w-3/4 bg-white/10 rounded-lg"></div>
         <div className="flex gap-4">
-            <div className="h-4 w-28 bg-stone-200 rounded-md"></div>
-            <div className="h-4 w-32 bg-stone-200 rounded-md"></div>
+            <div className="h-4 w-28 bg-white/10 rounded-md"></div>
+            <div className="h-4 w-32 bg-white/10 rounded-md"></div>
         </div>
     </div>
 );
@@ -189,7 +189,7 @@ const LecturesClient: React.FC = () => {
         const parts = text.split(regex);
         return parts.map((part, i) =>
             regex.test(part)
-                ? <mark key={i} className="bg-amber-200 text-orange-950 font-semibold px-0.5 rounded shadow-sm">{part}</mark>
+                ? <mark key={i} className="bg-amber-500/40 text-amber-100 font-semibold px-0.5 rounded shadow-sm">{part}</mark>
                 : part
         );
     };
@@ -338,7 +338,7 @@ const LecturesClient: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen bg-[#fcfbf9] text-gray-800 font-sans pt-24 pb-32">
+        <div className="min-h-screen bg-[#0a0a0a] text-stone-300 font-sans pt-24 pb-32">
 
             {/* HTML5 Audio Node */}
             {selectedLecture && (
@@ -392,8 +392,8 @@ const LecturesClient: React.FC = () => {
                     <aside className="w-full lg:w-72 flex-shrink-0 space-y-6">
 
                         {/* Elegant Search Panel */}
-                        <div className="bg-white/70 backdrop-blur-md rounded-2xl p-5 shadow-sm border border-orange-100/30">
-                            <h3 className="text-xs font-bold text-orange-955 uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
+                        <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-5 border border-white/10">
+                            <h3 className="text-xs font-bold text-amber-400 uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
                                 <FaSearch className="text-orange-600 text-xs" /> Search Archive
                             </h3>
                             <div className="relative">
@@ -403,7 +403,7 @@ const LecturesClient: React.FC = () => {
                                     value={searchText}
                                     onChange={(e) => setSearchText(e.target.value)}
                                     disabled={isLoading || !!error}
-                                    className="w-full bg-stone-50/50 border border-stone-200 hover:border-orange-200 focus:border-orange-500 rounded-xl py-2.5 pl-3.5 pr-10 text-sm focus:ring-4 focus:ring-orange-500/10 transition-all font-serif outline-none disabled:opacity-50"
+                                    className="w-full bg-black/40 border border-white/10 hover:border-amber-500/50 focus:border-amber-500 text-white rounded-xl py-2.5 pl-3.5 pr-10 text-sm focus:ring-4 focus:ring-orange-500/10 transition-all font-serif outline-none disabled:opacity-50"
                                 />
                                 {searchText ? (
                                     <button
@@ -419,9 +419,9 @@ const LecturesClient: React.FC = () => {
                         </div>
 
                         {/* Facet Filters */}
-                        <div className="bg-white/70 backdrop-blur-md rounded-2xl p-5 shadow-sm border border-orange-100/30 space-y-6">
-                            <div className="flex items-center justify-between border-b border-stone-100 pb-3">
-                                <h3 className="text-xs font-bold text-orange-955 uppercase tracking-[0.15em] flex items-center gap-2">
+                        <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-5 border border-white/10 space-y-6">
+                            <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                                <h3 className="text-xs font-bold text-amber-400 uppercase tracking-[0.15em] flex items-center gap-2">
                                     <FaFilter className="text-orange-600 text-xs" /> Filter Facets
                                 </h3>
                                 {(filterType || filterYear || filterLocation || filterScripture) && (
@@ -441,7 +441,7 @@ const LecturesClient: React.FC = () => {
 
                             {/* Facet: Type */}
                             <div>
-                                <h4 className="text-xxs font-bold text-stone-400 uppercase tracking-widest mb-3">Categories</h4>
+                                <h4 className="text-xxs font-bold text-stone-500 uppercase tracking-widest mb-3">Categories</h4>
                                 <ul className="space-y-1.5">
                                     {allTypes.map((type) => {
                                         const count = getFilteredCount('type', type);
@@ -452,11 +452,11 @@ const LecturesClient: React.FC = () => {
                                                 onClick={() => !isLoading && setFilterType(isActive ? null : type)}
                                                 className={`flex items-center justify-between group cursor-pointer text-sm py-2 px-3 rounded-xl transition-all ${isActive
                                                         ? 'bg-gradient-to-r from-orange-600 to-amber-500 text-white font-semibold shadow-md'
-                                                        : 'text-stone-600 hover:bg-orange-50/50 hover:text-orange-900'
+                                                        : 'text-stone-400 hover:bg-white/10 hover:text-amber-300'
                                                     } ${isLoading ? 'pointer-events-none opacity-50' : ''}`}
                                             >
                                                 <span>{type}</span>
-                                                <span className={`text-xxs font-bold px-2 py-0.5 rounded-full ${isActive ? 'bg-white/20 text-white' : 'bg-stone-100 text-stone-500 group-hover:bg-orange-100 group-hover:text-orange-955'
+                                                <span className={`text-xxs font-bold px-2 py-0.5 rounded-full ${isActive ? 'bg-white/20 text-white' : 'bg-stone-100 text-stone-500 group-hover:bg-orange-100 group-hover:text-amber-400'
                                                     }`}>{count}</span>
                                             </li>
                                         );
@@ -466,7 +466,7 @@ const LecturesClient: React.FC = () => {
 
                             {/* Facet: Scripture */}
                             <div>
-                                <h4 className="text-xxs font-bold text-stone-400 uppercase tracking-widest mb-3">Scriptures</h4>
+                                <h4 className="text-xxs font-bold text-stone-500 uppercase tracking-widest mb-3">Scriptures</h4>
                                 <ul className="space-y-1.5">
                                     {allScriptures.map((scrip) => {
                                         const count = getFilteredCount('scripture', scrip);
@@ -477,11 +477,11 @@ const LecturesClient: React.FC = () => {
                                                 onClick={() => !isLoading && setFilterScripture(isActive ? null : scrip)}
                                                 className={`flex items-center justify-between group cursor-pointer text-sm py-2 px-3 rounded-xl transition-all ${isActive
                                                         ? 'bg-gradient-to-r from-orange-600 to-amber-500 text-white font-semibold shadow-md'
-                                                        : 'text-stone-600 hover:bg-orange-50/50 hover:text-orange-900'
+                                                        : 'text-stone-400 hover:bg-white/10 hover:text-amber-300'
                                                     } ${isLoading ? 'pointer-events-none opacity-50' : ''}`}
                                             >
                                                 <span>{scrip}</span>
-                                                <span className={`text-xxs font-bold px-2 py-0.5 rounded-full ${isActive ? 'bg-white/20 text-white' : 'bg-stone-100 text-stone-500 group-hover:bg-orange-100 group-hover:text-orange-955'
+                                                <span className={`text-xxs font-bold px-2 py-0.5 rounded-full ${isActive ? 'bg-white/20 text-white' : 'bg-stone-100 text-stone-500 group-hover:bg-orange-100 group-hover:text-amber-400'
                                                     }`}>{count}</span>
                                             </li>
                                         );
@@ -491,7 +491,7 @@ const LecturesClient: React.FC = () => {
 
                             {/* Facet: Year */}
                             <div>
-                                <h4 className="text-xxs font-bold text-stone-400 uppercase tracking-widest mb-3">Timeline</h4>
+                                <h4 className="text-xxs font-bold text-stone-500 uppercase tracking-widest mb-3">Timeline</h4>
                                 <ul className="space-y-1.5 max-h-48 overflow-y-auto pr-1 scrollbar-thin">
                                     {allYears.map((year) => {
                                         const count = getFilteredCount('year', year);
@@ -502,11 +502,11 @@ const LecturesClient: React.FC = () => {
                                                 onClick={() => !isLoading && setFilterYear(isActive ? null : year)}
                                                 className={`flex items-center justify-between group cursor-pointer text-sm py-2 px-3 rounded-xl transition-all ${isActive
                                                         ? 'bg-gradient-to-r from-orange-600 to-amber-500 text-white font-semibold shadow-md'
-                                                        : 'text-stone-600 hover:bg-orange-50/50 hover:text-orange-900'
+                                                        : 'text-stone-400 hover:bg-white/10 hover:text-amber-300'
                                                     } ${isLoading ? 'pointer-events-none opacity-50' : ''}`}
                                             >
                                                 <span className="font-serif">{year}</span>
-                                                <span className={`text-xxs font-bold px-2 py-0.5 rounded-full ${isActive ? 'bg-white/20 text-white' : 'bg-stone-100 text-stone-500 group-hover:bg-orange-100 group-hover:text-orange-955'
+                                                <span className={`text-xxs font-bold px-2 py-0.5 rounded-full ${isActive ? 'bg-white/20 text-white' : 'bg-stone-100 text-stone-500 group-hover:bg-orange-100 group-hover:text-amber-400'
                                                     }`}>{count}</span>
                                             </li>
                                         );
@@ -516,7 +516,7 @@ const LecturesClient: React.FC = () => {
 
                             {/* Facet: Location */}
                             <div>
-                                <h4 className="text-xxs font-bold text-stone-400 uppercase tracking-widest mb-3">Locations</h4>
+                                <h4 className="text-xxs font-bold text-stone-500 uppercase tracking-widest mb-3">Locations</h4>
                                 <ul className="space-y-1.5 max-h-48 overflow-y-auto pr-1 scrollbar-thin">
                                     {allLocations.map((loc) => {
                                         const count = getFilteredCount('location', loc);
@@ -527,11 +527,11 @@ const LecturesClient: React.FC = () => {
                                                 onClick={() => !isLoading && setFilterLocation(isActive ? null : loc)}
                                                 className={`flex items-center justify-between group cursor-pointer text-sm py-2 px-3 rounded-xl transition-all ${isActive
                                                         ? 'bg-gradient-to-r from-orange-600 to-amber-500 text-white font-semibold shadow-md'
-                                                        : 'text-stone-600 hover:bg-orange-50/50 hover:text-orange-900'
+                                                        : 'text-stone-400 hover:bg-white/10 hover:text-amber-300'
                                                     } ${isLoading ? 'pointer-events-none opacity-50' : ''}`}
                                             >
                                                 <span>{loc}</span>
-                                                <span className={`text-xxs font-bold px-2 py-0.5 rounded-full ${isActive ? 'bg-white/20 text-white' : 'bg-stone-100 text-stone-500 group-hover:bg-orange-100 group-hover:text-orange-955'
+                                                <span className={`text-xxs font-bold px-2 py-0.5 rounded-full ${isActive ? 'bg-white/20 text-white' : 'bg-stone-100 text-stone-500 group-hover:bg-orange-100 group-hover:text-amber-400'
                                                     }`}>{count}</span>
                                             </li>
                                         );
@@ -546,9 +546,9 @@ const LecturesClient: React.FC = () => {
                     <main className="flex-1 space-y-6">
 
                         {/* Top Filters & Sorting bar */}
-                        <div className="bg-white/70 backdrop-blur-md p-4 rounded-2xl shadow-sm border border-orange-100/30 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                        <div className="bg-white/5 backdrop-blur-xl p-4 rounded-2xl border border-white/10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                             <div>
-                                <p className="text-sm text-stone-500 font-medium">
+                                <p className="text-sm text-stone-400 font-medium">
                                     Found <span className="font-bold text-orange-900 font-serif text-base">{sortedLectures.length}</span> recordings
                                     {(filterType || filterYear || filterLocation || filterScripture || searchText) && ' matching filters'}
                                 </p>
@@ -580,13 +580,13 @@ const LecturesClient: React.FC = () => {
                                     )}
                                 </div>
                             </div>
-                            <div className="flex items-center gap-2 text-sm text-stone-500 font-medium self-end sm:self-auto">
+                            <div className="flex items-center gap-2 text-sm text-stone-400 font-medium self-end sm:self-auto">
                                 <span>Sort Archive:</span>
                                 <select
                                     value={sortBy}
                                     onChange={(e) => setSortBy(e.target.value as any)}
                                     disabled={isLoading || !!error}
-                                    className="bg-stone-50 border border-stone-200 rounded-xl py-1.5 px-3 text-sm font-bold text-stone-850 outline-none cursor-pointer focus:ring-4 focus:ring-orange-500/10 focus:border-orange-500 disabled:opacity-50"
+                                    className="bg-black/40 border border-white/10 text-white rounded-xl py-1.5 px-3 text-sm font-bold text-stone-200 outline-none cursor-pointer focus:ring-4 focus:ring-orange-500/10 focus:border-orange-500 disabled:opacity-50"
                                 >
                                     <option value="date-desc">Date (Newest)</option>
                                     <option value="date-asc">Date (Oldest)</option>
@@ -630,44 +630,44 @@ const LecturesClient: React.FC = () => {
                                         <div
                                             key={lecture._id}
                                             id={`lecture-card-${lecture._id}`}
-                                            className={`bg-white rounded-2xl border overflow-hidden transition-all duration-500 ${isExpanded
-                                                    ? 'border-amber-500 shadow-md ring-4 ring-amber-500/5'
-                                                    : 'border-stone-150 hover:border-amber-300 hover:shadow-md'
+                                            className={`bg-white/5 backdrop-blur-md rounded-2xl border overflow-hidden transition-all duration-500 ${isExpanded
+                                                    ? 'border-amber-500 bg-white/10 shadow-[0_0_30px_rgba(245,158,11,0.15)] ring-1 ring-amber-500/50'
+                                                    : 'border-white/5 hover:border-amber-500/50 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(245,158,11,0.1)]'
                                                 }`}
                                         >
                                             {/* Card Main Block */}
                                             <div
                                                 onClick={() => setSelectedLectureId(isExpanded ? null : lecture._id)}
-                                                className="p-5 sm:p-6 cursor-pointer flex flex-col md:flex-row justify-between items-start md:items-center gap-4 transition-colors hover:bg-stone-50/50"
+                                                className="p-5 sm:p-6 cursor-pointer flex flex-col md:flex-row justify-between items-start md:items-center gap-4 transition-colors hover:bg-white/5"
                                             >
                                                 <div className="space-y-3 flex-1">
                                                     <div className="flex flex-wrap items-center gap-2">
-                                                        <span className="text-xxs font-mono font-bold uppercase tracking-wider bg-orange-100 text-orange-955 px-2 py-0.5 rounded-md">
+                                                        <span className="text-xxs font-mono font-bold uppercase tracking-wider bg-orange-100 text-amber-400 px-2 py-0.5 rounded-md">
                                                             {lecture.code}
                                                         </span>
-                                                        <span className="text-xxs uppercase font-bold bg-stone-105 text-stone-600 px-2 py-0.5 rounded-md tracking-wider">
+                                                        <span className="text-xxs uppercase font-bold bg-white/10 text-stone-300 border border-white/10 px-2 py-0.5 rounded-md tracking-wider">
                                                             {lecture.type}
                                                         </span>
                                                         {lecture.scripture && (
-                                                            <span className="text-xxs bg-amber-50 text-amber-900 border border-amber-200/30 px-2 py-0.5 rounded-md font-serif italic font-bold">
+                                                            <span className="text-xxs bg-amber-900/30 text-amber-200 border border-amber-500/30 px-2 py-0.5 rounded-md font-serif italic font-bold">
                                                                 {lecture.scripture} {lecture.verses}
                                                             </span>
                                                         )}
                                                     </div>
 
-                                                    <h3 className={`text-lg font-serif font-bold transition-colors ${isExpanded ? 'text-orange-900' : 'text-gray-900'
+                                                    <h3 className={`text-lg font-serif font-bold transition-colors ${isExpanded ? 'text-orange-900' : 'text-stone-100'
                                                         }`}>
                                                         {highlightText(lecture.title, searchText)}
                                                     </h3>
 
-                                                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-stone-500 font-medium">
+                                                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-stone-400 font-medium">
                                                         <span className="flex items-center gap-1.5"><FaCalendarAlt className="text-orange-505" /> {lecture.date}</span>
                                                         <span className="hidden md:inline text-stone-200">|</span>
                                                         <span className="flex items-center gap-1.5"><FaMapMarkerAlt className="text-orange-505" /> {highlightText(lecture.location, searchText)}</span>
                                                     </div>
                                                 </div>
 
-                                                <div className="flex items-center gap-4 self-stretch md:self-auto justify-between md:justify-end border-t md:border-t-0 pt-3 md:pt-0 border-stone-100">
+                                                <div className="flex items-center gap-4 self-stretch md:self-auto justify-between md:justify-end border-t md:border-t-0 pt-3 md:pt-0 border-white/10">
                                                     <div className="flex items-center gap-3">
                                                         {isCurrentlyPlayingThis && <AudioVisualizer isPlaying={isPlaying} />}
                                                         <span className="text-xs font-mono text-stone-400 font-semibold">{lecture.duration}</span>
@@ -691,27 +691,27 @@ const LecturesClient: React.FC = () => {
                                                         animate={{ height: 'auto', opacity: 1 }}
                                                         exit={{ height: 0, opacity: 0 }}
                                                         transition={{ duration: 0.4, ease: "easeInOut" }}
-                                                        className="border-t border-stone-100 bg-[#faf9f6]/95 overflow-hidden"
+                                                        className="border-t border-white/10 bg-black/40 backdrop-blur-2xl overflow-hidden"
                                                     >
                                                         <div className="p-5 sm:p-6 space-y-6">
 
                                                             {/* Custom Local Player Widget */}
-                                                            <div className="bg-gradient-to-br from-[#ffffff] to-[#faf9f6] rounded-2xl p-5 border border-stone-200/60 shadow-sm space-y-4 relative overflow-hidden">
+                                                            <div className="bg-white/5 rounded-2xl p-5 border border-white/10 shadow-sm space-y-4 relative overflow-hidden">
                                                                 <div className="absolute top-0 right-0 w-24 h-24 bg-amber-500/5 rounded-full blur-xl pointer-events-none"></div>
 
                                                                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
                                                                     <div>
-                                                                        <span className="text-[10px] uppercase tracking-widest font-bold text-stone-450">Active Recording</span>
-                                                                        <h4 className="text-sm font-bold text-stone-850 font-serif">{lecture.title} ({lecture.code})</h4>
+                                                                        <span className="text-[10px] uppercase tracking-widest font-bold text-stone-400">Active Recording</span>
+                                                                        <h4 className="text-sm font-bold text-stone-100 font-serif">{lecture.title} ({lecture.code})</h4>
                                                                     </div>
 
                                                                     {/* Speed dial */}
-                                                                    <div className="flex items-center gap-2 bg-stone-50 border border-stone-200 rounded-lg px-2 py-1">
-                                                                        <span className="text-[10px] text-stone-450 font-bold uppercase tracking-wider">Speed:</span>
+                                                                    <div className="flex items-center gap-2 bg-black/40 border border-white/10 text-white rounded-lg px-2 py-1">
+                                                                        <span className="text-[10px] text-stone-400 font-bold uppercase tracking-wider">Speed:</span>
                                                                         <select
                                                                             value={playbackSpeed}
                                                                             onChange={(e) => setPlaybackSpeed(parseFloat(e.target.value))}
-                                                                            className="bg-transparent border-none text-xs font-mono font-bold text-stone-700 outline-none cursor-pointer p-0"
+                                                                            className="bg-transparent border-none text-xs font-mono font-bold text-stone-300 outline-none cursor-pointer p-0"
                                                                         >
                                                                             <option value="0.75">0.75x</option>
                                                                             <option value="1.0">1.0x (Normal)</option>
@@ -732,7 +732,7 @@ const LecturesClient: React.FC = () => {
                                                                             max={duration || 100}
                                                                             value={currentTime}
                                                                             onChange={handleSeek}
-                                                                            className="w-full h-1.5 rounded-lg bg-stone-200 appearance-none cursor-pointer accent-orange-600 outline-none group-hover:h-2 transition-all"
+                                                                            className="w-full h-1.5 rounded-lg bg-white/10 appearance-none cursor-pointer accent-orange-600 outline-none group-hover:h-2 transition-all"
                                                                         />
                                                                     </div>
                                                                     <div className="flex justify-between items-center text-xs font-mono text-stone-400">
@@ -742,7 +742,7 @@ const LecturesClient: React.FC = () => {
                                                                 </div>
 
                                                                 {/* Buttons layout */}
-                                                                <div className="flex flex-wrap items-center justify-between gap-4 pt-1.5 border-t border-stone-100">
+                                                                <div className="flex flex-wrap items-center justify-between gap-4 pt-1.5 border-t border-white/10">
                                                                     <div className="flex items-center gap-3">
                                                                         <button
                                                                             onClick={() => handleSkipSeconds(-10)}
@@ -787,7 +787,7 @@ const LecturesClient: React.FC = () => {
                                                                                 setVolume(newVol);
                                                                                 if (newVol > 0) setIsMuted(false);
                                                                             }}
-                                                                            className="w-20 sm:w-24 h-1 rounded-lg bg-stone-200 appearance-none cursor-pointer accent-orange-600 outline-none"
+                                                                            className="w-20 sm:w-24 h-1 rounded-lg bg-white/10 appearance-none cursor-pointer accent-orange-600 outline-none"
                                                                         />
                                                                     </div>
 
@@ -808,7 +808,7 @@ const LecturesClient: React.FC = () => {
                                                                         <button
                                                                             onClick={() => setReaderTab('transcript')}
                                                                             className={`px-4 py-2 text-xs font-bold rounded-lg transition-all duration-300 ${readerTab === 'transcript'
-                                                                                    ? 'bg-white text-orange-955 shadow-sm font-bold'
+                                                                                    ? 'bg-white text-amber-400 shadow-sm font-bold'
                                                                                     : 'text-stone-500 hover:text-stone-900'
                                                                                 }`}
                                                                         >
@@ -817,7 +817,7 @@ const LecturesClient: React.FC = () => {
                                                                         <button
                                                                             onClick={() => setReaderTab('details')}
                                                                             className={`px-4 py-2 text-xs font-bold rounded-lg transition-all duration-300 ${readerTab === 'details'
-                                                                                    ? 'bg-white text-orange-955 shadow-sm font-bold'
+                                                                                    ? 'bg-white text-amber-400 shadow-sm font-bold'
                                                                                     : 'text-stone-500 hover:text-stone-900'
                                                                                 }`}
                                                                         >
@@ -862,7 +862,7 @@ const LecturesClient: React.FC = () => {
                                                                             >
                                                                                 A-
                                                                             </button>
-                                                                            <span className="font-mono text-center w-5 font-bold text-stone-700">{readerFontSize}</span>
+                                                                            <span className="font-mono text-center w-5 font-bold text-stone-300">{readerFontSize}</span>
                                                                             <button
                                                                                 onClick={() => setReaderFontSize(prev => Math.min(28, prev + 2))}
                                                                                 disabled={readerFontSize >= 28}
@@ -911,7 +911,7 @@ const LecturesClient: React.FC = () => {
                                                                                 </div>
                                                                             )}
 
-                                                                            <div className="h-px bg-stone-200"></div>
+                                                                            <div className="h-px bg-white/10"></div>
 
                                                                             {/* Summary */}
                                                                             <div className="space-y-1.5">
