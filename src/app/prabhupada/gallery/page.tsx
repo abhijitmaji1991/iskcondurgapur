@@ -17,43 +17,19 @@ const galleryItems = [
   },
   {
     id: 2,
-    title: 'ISKCON Temple Architecture',
-    image: '/images/iskcon-temple-dome.jpg',
-    category: 'Temples',
-    year: '1972',
-    description: 'The beautiful architecture of ISKCON temples, representing Vedic culture and spirituality.'
+    title: 'Srila Prabhupada',
+    image: '/images/srila-prabhupada.jpg',
+    category: 'Historical',
+    year: '1970s',
+    description: 'His Divine Grace A.C. Bhaktivedanta Swami Prabhupada.'
   },
   {
     id: 3,
-    title: 'Krishna Temple',
-    image: '/images/krishna-temple.jpg',
-    category: 'Temples',
-    year: '1970',
-    description: 'The magnificent Krishna temple, a spiritual haven for devotees.'
-  },
-  {
-    id: 4,
-    title: 'Ratha Yatra Festival',
-    image: '/images/events/ratha-yatra-festival.jpg',
-    category: 'Festivals',
-    year: '1973',
-    description: 'The grand Ratha Yatra festival, celebrating Lord Jagannath\'s journey.'
-  },
-  {
-    id: 5,
-    title: 'Janmashtami Celebration',
-    image: '/images/events/janmashtami-celebration.jpg',
-    category: 'Festivals',
-    year: '1974',
-    description: 'Devotees celebrating Janmashtami, the divine appearance day of Lord Krishna.'
-  },
-  {
-    id: 6,
-    title: 'Gaura Purnima Festival',
-    image: '/images/events/gaura-purnima-festival.jpg',
-    category: 'Festivals',
-    year: '1975',
-    description: 'Celebrating Gaura Purnima, the appearance day of Lord Chaitanya Mahaprabhu.'
+    title: 'A.C. Bhaktivedanta Swami',
+    image: '/images/prabhupada.jpg',
+    category: 'Historical',
+    year: '1970s',
+    description: 'Srila Prabhupada deep in thought.'
   }
 ];
 
