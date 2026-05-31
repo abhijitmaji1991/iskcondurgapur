@@ -5,7 +5,102 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaBars, FaTimes, FaChevronDown, FaHome, FaInfoCircle, FaPrayingHands, FaCalendarAlt, FaBook, FaLandmark, FaImages, FaEnvelope, FaUtensils, FaPlane, FaGraduationCap, FaShoppingCart, FaUsers } from 'react-icons/fa';
+import { FaBars, FaTimes, FaChevronDown, FaHome, FaInfoCircle, FaPrayingHands, FaCalendarAlt, FaBook, FaLandmark, FaImages, FaEnvelope, FaUtensils, FaPlane, FaGraduationCap, FaShoppingCart, FaUsers, FaBell } from 'react-icons/fa';
+import { useRef } from 'react';
+
+function NotificationBell() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [events, setEvents] = useState<any[]>([]);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const res = await fetch('/api/events');
+        const data = await res.json();
+        if (data.data) {
+          const upcoming = data.data.filter((e: any) => new Date(e.date) >= new Date()).slice(0, 3);
+          setEvents(upcoming);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchEvents();
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const formatDate = (d: string) => {
+    try { return new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' }); }
+    catch { return d; }
+  };
+
+  return (
+    <div className="relative" ref={dropdownRef}>
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="relative p-2 text-gray-700 hover:text-orange-500 transition-colors"
+        aria-label="Notifications"
+      >
+        <FaBell size={20} />
+        {events.length > 0 && (
+          <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white"></span>
+        )}
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            className="absolute right-0 mt-2 w-80 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden z-50"
+          >
+            <div className="p-4 border-b border-gray-100 bg-gray-50 flex justify-between items-center">
+              <h3 className="font-bold text-gray-800">Notifications</h3>
+              <span className="text-xs text-gray-500 bg-gray-200 px-2 py-1 rounded-full">{events.length} New</span>
+            </div>
+            <div className="max-h-96 overflow-y-auto">
+              {events.length > 0 ? (
+                events.map(event => (
+                  <Link 
+                    key={event._id} 
+                    href={`/events/${event._id}`}
+                    className="block p-4 border-b border-gray-50 hover:bg-orange-50 transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <p className="text-sm font-semibold text-gray-800 mb-1 line-clamp-1">{event.title}</p>
+                    <p className="text-xs text-gray-500 flex items-center gap-1">
+                      <FaCalendarAlt className="text-orange-400" /> {formatDate(event.date)}
+                    </p>
+                  </Link>
+                ))
+              ) : (
+                <div className="p-6 text-center text-gray-500 text-sm">
+                  No upcoming events right now.
+                </div>
+              )}
+            </div>
+            {events.length > 0 && (
+              <div className="p-3 bg-gray-50 text-center border-t border-gray-100">
+                <Link href="/events" className="text-xs font-bold text-orange-500 hover:underline" onClick={() => setIsOpen(false)}>
+                  View All Events
+                </Link>
+              </div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
 
 const navigation = [
   { name: 'Home', href: '/', icon: <FaHome className="mr-2" /> },
@@ -176,6 +271,7 @@ export default function Navbar() {
 
           {/* Donate Button */}
           <div className="hidden lg:flex items-center space-x-3">
+            <NotificationBell />
             <Link href="/auth/login" className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-iskcon-orange">
               Login
             </Link>
@@ -188,16 +284,19 @@ export default function Navbar() {
           </div>
 
           {/* Mobile menu button */}
-          <button
-            className="lg:hidden text-2xl text-gray-800"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? (
-              <FaTimes />
-            ) : (
-              <FaBars />
-            )}
-          </button>
+          <div className="lg:hidden flex items-center gap-2">
+            <NotificationBell />
+            <button
+              className="text-2xl text-gray-800 ml-2"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? (
+                <FaTimes />
+              ) : (
+                <FaBars />
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
