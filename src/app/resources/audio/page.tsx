@@ -172,7 +172,7 @@ export default function AudioPage() {
               ISKCON Desire Tree Audio
             </h1>
             <p className="text-lg text-gray-600 leading-relaxed mb-4">
-              Browse and listen to tens of thousands of transcendental lectures, kirtans, and bhajans directly from the world's largest Vaishnava audio archive.
+              Browse and listen to tens of thousands of transcendental lectures, kirtans, and bhajans directly from the world&apos;s largest Vaishnava audio archive.
             </p>
           </div>
           <div className="absolute right-0 top-0 bottom-0 w-1/3 opacity-20 pointer-events-none hidden md:block">
