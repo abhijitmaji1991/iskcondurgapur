@@ -122,7 +122,6 @@ const navigation = [
     submenu: [
       { name: 'Biography', href: '/prabhupada/biography' },
       { name: 'Books', href: '/resources/books' },
-      { name: 'Lectures', href: '/prabhupada/lectures' },
       { name: 'Quotes', href: '/resources/prabhupada-quotes' },
       { name: 'Gallery', href: '/prabhupada/gallery' }
     ]

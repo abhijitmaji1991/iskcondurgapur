@@ -145,12 +145,7 @@ export default function TeachingsPage() {
             >
               Explore Books
             </Link>
-            <Link
-              href="/prabhupada/lectures"
-              className="bg-transparent border-2 border-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-iskcon-orange transition"
-            >
-              Listen to Lectures
-            </Link>
+
           </div>
         </div>
       </section>
