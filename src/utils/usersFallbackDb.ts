@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 const DATA_DIR = path.join(process.cwd(), 'src', 'data');
 const DATA_FILE = path.join(DATA_DIR, 'users_fallback.json');

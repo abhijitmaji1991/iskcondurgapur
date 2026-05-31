@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { sign } from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import logger from '@/utils/logger';
 import { twoFactorAuth } from '@/utils/twoFactorAuth';
 import { ipBlocker } from '@/middleware/ipBlock';
