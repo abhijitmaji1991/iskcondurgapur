@@ -226,16 +226,7 @@ export default function VideosPage() {
           {/* Grid */}
           {!loading && !error && visible.length > 0 && (
             <>
-              {/* API key notice if fallback */}
-              {source === 'rss-fallback' && (
-                <div className="mb-6 bg-amber-50 border border-amber-200 rounded-xl px-5 py-3 text-sm text-amber-800 flex items-start gap-3">
-                  <span className="text-lg">⚠️</span>
-                  <div>
-                    <strong>Showing latest 15 videos only.</strong> Add a <code>YOUTUBE_API_KEY</code> in <code>.env.local</code> to enable full-channel sync with all videos.
-                    {' '}<a href="https://console.cloud.google.com" target="_blank" rel="noopener noreferrer" className="underline">Get a free key →</a>
-                  </div>
-                </div>
-              )}
+              {/* API key notice hidden per user request */}
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
                 {visible.map((video, index) => (
