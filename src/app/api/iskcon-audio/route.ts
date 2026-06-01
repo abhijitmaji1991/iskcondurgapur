@@ -1,80 +1,61 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
+const GOOGLE_DRIVE_ROOT_FOLDER_ID = '1BByujLqEQ2Nq_xDJzdP25HWcybSBMP5v';
+
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  const path = searchParams.get('path') || '';
+  // path will now represent a Google Drive Folder ID. If empty, use root.
+  const path = searchParams.get('path') || GOOGLE_DRIVE_ROOT_FOLDER_ID;
+  const apiKey = process.env.GOOGLE_DRIVE_API_KEY || process.env.YOUTUBE_API_KEY;
+
+  if (!apiKey) {
+    return NextResponse.json({ success: false, message: 'Google API Key is not configured.' }, { status: 500 });
+  }
 
   try {
-    const url = `https://audio.iskcondesiretree.com/index.php?q=f&f=${encodeURIComponent(path)}`;
-    const response = await fetch(url, { 
-      headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) ISKCON-App' }, 
-      cache: 'no-store' 
-    });
+    const url = `https://www.googleapis.com/drive/v3/files?q='${path}'+in+parents+and+trashed=false&fields=files(id,name,mimeType)&key=${apiKey}&pageSize=1000`;
+    const response = await fetch(url, { cache: 'no-store' });
     
     if (!response.ok) {
-      throw new Error(`Failed to fetch from external site: ${response.statusText}`);
+      throw new Error(`Failed to fetch from Google Drive: ${response.statusText}`);
     }
 
-    const html = await response.text();
+    const data = await response.json();
+    const items = data.files || [];
 
-    // Parse folders
-    // Example: <a href=index.php?q=f&f=/01_-_Srila_Prabhupada><font ...><b>01_-_Srila_Prabhupada</b></font></a>
-    // We'll use a robust regex to catch different variations.
-    const folderRegex = /href=["']?index\.php\?q=f&f=([^"'>\s]+)["']?.*?>\s*<font[^>]*>\s*<b>([^<]+)<\/b>/gi;
     const folders: any[] = [];
-    const addedFolders = new Set();
-    let folderMatch;
-    
-    while ((folderMatch = folderRegex.exec(html)) !== null) {
-      const folderPath = decodeURIComponent(folderMatch[1].replace(/&amp;/g, '&'));
-      if (folderPath && folderPath !== '/' && !addedFolders.has(folderPath)) {
-        addedFolders.add(folderPath);
+    const files: any[] = [];
+
+    for (const item of items) {
+      if (item.mimeType === 'application/vnd.google-apps.folder') {
         folders.push({
-          path: folderPath,
-          name: decodeURIComponent(folderMatch[2].replace(/&amp;/g, '&')).replace(/_/g, ' ')
+          path: item.id, // Using folder ID as the path
+          name: item.name
+        });
+      } else if (item.mimeType.startsWith('audio/') || item.mimeType.startsWith('video/')) {
+        files.push({
+          url: `https://drive.google.com/file/d/${item.id}/preview`,
+          name: item.name.replace(/\.[^/.]+$/, "") // Remove file extension for display
         });
       }
     }
 
-    // Parse audio files
-    // Look for hrefs that end in .mp3
-    const fileRegex = /href=["']?([^"'>]+\.mp3)["']?/gi;
-    const files: any[] = [];
-    const addedUrls = new Set();
-    let fileMatch;
-    
-    while ((fileMatch = fileRegex.exec(html)) !== null) {
-      let fileUrl = fileMatch[1];
-      
-      // Ensure it's an absolute URL pointing to their server
-      if (!fileUrl.startsWith('http')) {
-        fileUrl = `https://audio.iskcondesiretree.com${fileUrl.startsWith('/') ? '' : '/'}${fileUrl}`;
-      }
-      
-      if (!addedUrls.has(fileUrl)) {
-        addedUrls.add(fileUrl);
-        // Extract filename
-        const parts = fileUrl.split('/');
-        let rawName = parts[parts.length - 1];
-        rawName = decodeURIComponent(rawName).replace(/\.mp3$/i, '').replace(/_/g, ' ');
-        
-        files.push({
-          url: fileUrl,
-          name: rawName
-        });
-      }
-    }
+    // Sort alphabetically
+    folders.sort((a, b) => a.name.localeCompare(b.name));
+    files.sort((a, b) => a.name.localeCompare(b.name));
 
     return NextResponse.json({
       success: true,
       data: {
-        currentPath: path,
+        currentPath: path === GOOGLE_DRIVE_ROOT_FOLDER_ID ? '' : path,
         folders,
         files
       }
     });
   } catch (error: any) {
-    console.error('ISKCON Audio Proxy Error:', error);
+    console.error('Google Drive API Proxy Error:', error);
     return NextResponse.json({ success: false, message: 'Failed to fetch audio directories.' }, { status: 500 });
   }
 }
