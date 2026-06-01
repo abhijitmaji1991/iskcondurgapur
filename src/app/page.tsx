@@ -12,6 +12,13 @@ const HeroContent = dynamic(() => import('@/components/HeroContent'), {
   ),
 });
 
+import FeaturedCourses from '@/components/FeaturedCourses';
+
 export default function Home() {
-  return <HeroContent />;
+  return (
+    <>
+      <HeroContent />
+      <FeaturedCourses />
+    </>
+  );
 }

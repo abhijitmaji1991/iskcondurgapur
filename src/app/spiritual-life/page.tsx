@@ -7,6 +7,12 @@ import { FaSun, FaPrayingHands, FaCalendarAlt, FaUtensils, FaPlane } from 'react
 export default function SpiritualLifePage() {
     const sections = [
         {
+            title: "Initiation",
+            description: "The sacred vow of dedication to the spiritual master and Sri Krishna.",
+            link: "/spiritual-life/initiation",
+            icon: <FaSun className="text-4xl text-iskcon-orange" />
+        },
+        {
             title: "Daily Worship",
             description: "Learn about the daily schedule of deity worship, offering bhoga, and arati.",
             link: "/spiritual-life/daily-worship",

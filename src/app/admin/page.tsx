@@ -63,25 +63,6 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Admin Header */}
-      <header className="bg-white border-b border-gray-100 shadow-sm sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-iskcon-orange rounded-lg flex items-center justify-center text-white shadow-lg">
-              <FaHome size={18} />
-            </div>
-            <h1 className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
-              ISKCON Admin Panel
-            </h1>
-          </div>
-          <button
-            onClick={handleLogout}
-            className="flex items-center gap-2 text-red-500 hover:bg-red-50 px-4 py-2 rounded-lg transition-all font-medium"
-          >
-            <FaSignOutAlt /> Logout
-          </button>
-        </div>
-      </header>
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-6 py-8">
@@ -234,6 +215,36 @@ export default function AdminDashboard() {
                 Manage your sacred pilgrimages. Add new dynamic travel itineraries, update pricing, group sizes, coordinates, and inclusions.
               </p>
               <div className="flex items-center text-orange-500 font-bold text-sm tracking-wide group-hover:gap-2 transition-all">
+                GO TO PANEL <span className="text-lg">→</span>
+              </div>
+            </div>
+          </Link>
+
+          <Link href="/admin/courses" className="block transform hover:-translate-y-1 transition-all">
+            <div className="bg-white rounded-2xl shadow-sm p-8 border border-gray-100 hover:shadow-xl group transition-all h-full flex flex-col">
+              <div className="mb-6 text-green-500">
+                <FaBookOpen size={40} className="group-hover:scale-110 transition-transform" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Spiritual Courses</h3>
+              <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">
+                Manage all spiritual courses, including enrollments, content modules, syllabus documents, and schedules.
+              </p>
+              <div className="flex items-center text-green-500 font-bold text-sm tracking-wide group-hover:gap-2 transition-all">
+                GO TO PANEL <span className="text-lg">→</span>
+              </div>
+            </div>
+          </Link>
+
+          <Link href="/admin/gallery" className="block transform hover:-translate-y-1 transition-all">
+            <div className="bg-white rounded-2xl shadow-sm p-8 border border-gray-100 hover:shadow-xl group transition-all h-full flex flex-col">
+              <div className="mb-6 text-teal-500">
+                <FaImage size={40} className="group-hover:scale-110 transition-transform" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Photo Gallery</h3>
+              <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">
+                Manage the website photo gallery. Upload images to date-wise folders and organize event pictures.
+              </p>
+              <div className="flex items-center text-teal-500 font-bold text-sm tracking-wide group-hover:gap-2 transition-all">
                 GO TO PANEL <span className="text-lg">→</span>
               </div>
             </div>
