@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 const CHANNEL_HANDLE = 'iskcondurgapurofficial957';
 const API_KEY = process.env.YOUTUBE_API_KEY;
 const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
