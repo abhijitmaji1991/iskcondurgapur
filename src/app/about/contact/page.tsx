@@ -47,21 +47,25 @@ export default function ContactPage() {
         setSubmitStatus(null);
 
         try {
-            // 1) Save to MongoDB via Laravel backend
-            await submitContact({
+            // 1) Send email via Next.js API
+            const emailRes = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+
+            if (!emailRes.ok) {
+                throw new Error('Failed to send email');
+            }
+
+            // 2) Also try to save to MongoDB via Laravel backend (best-effort)
+            submitContact({
                 name: formData.name,
                 email: formData.email,
                 phone: formData.phone,
                 subject: formData.subject,
                 message: formData.message,
-            });
-
-            // 2) Also send email via Next.js API (best-effort)
-            fetch('/api/contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
-            }).catch(() => { }); // don't block UI if email fails
+            }).catch((err) => console.error('Failed to save contact to backend:', err));
 
             setSubmitStatus('success');
             setFormData({ name: '', email: '', phone: '', subject: '', message: '' });

@@ -18,56 +18,108 @@ export default function InitiationPage() {
 
       {/* Main Content */}
       <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div className="prose prose-lg mx-auto text-gray-700">
-            <p className="lead text-2xl text-iskcon-orange font-medium mb-8 text-center">
-              &quot;To receive initiation means to agree to execute the order of the spiritual master.&quot;
-              <br/>
-              <span className="text-sm text-gray-500">— Srila Prabhupada</span>
-            </p>
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="flex flex-col lg:flex-row gap-12">
+            {/* Left Content */}
+            <div className="lg:w-2/3 prose prose-lg text-gray-700">
+              <p className="lead text-2xl text-iskcon-orange font-medium mb-8 text-center">
+                &quot;To receive initiation means to agree to execute the order of the spiritual master.&quot;
+                <br/>
+                <span className="text-sm text-gray-500">— Srila Prabhupada</span>
+              </p>
 
-            <h2 className="text-3xl font-bold text-gray-900 mb-6 border-b-2 border-iskcon-orange pb-2 inline-block">What is Diksha (Initiation)?</h2>
-            <p className="mb-6">
-              In the Gaudiya Vaishnava tradition, spiritual initiation, or <strong>Diksha</strong>, is a formal ceremony where a devotee takes sacred vows under the guidance of a bona fide spiritual master (Guru). It marks the beginning of a committed spiritual life, dedicated to the service of Lord Krishna.
-            </p>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6 border-b-2 border-iskcon-orange pb-2 inline-block">What is Diksha (Initiation)?</h2>
+              <p className="mb-6">
+                In the Gaudiya Vaishnava tradition, spiritual initiation, or <strong>Diksha</strong>, is a formal ceremony where a devotee takes sacred vows under the guidance of a bona fide spiritual master (Guru). It marks the beginning of a committed spiritual life, dedicated to the service of Lord Krishna.
+              </p>
 
-            <div className="bg-orange-50 border-l-4 border-iskcon-orange p-6 rounded-r-lg mb-8 shadow-sm">
-              <h3 className="text-xl font-bold text-gray-900 mb-3">The Four Regulative Principles</h3>
-              <p className="mb-4">Before taking initiation, a devotee must strictly follow four regulative principles for at least one year:</p>
-              <ul className="list-disc pl-5 space-y-2 text-gray-800 font-medium">
-                <li>No meat-eating (including fish and eggs)</li>
-                <li>No illicit sex</li>
-                <li>No intoxication (including alcohol, caffeine, and tobacco)</li>
-                <li>No gambling</li>
-              </ul>
+              <div className="bg-orange-50 border-l-4 border-iskcon-orange p-6 rounded-r-lg mb-8 shadow-sm">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">The Four Regulative Principles</h3>
+                <p className="mb-4">Before taking initiation, a devotee must strictly follow four regulative principles for at least one year:</p>
+                <ul className="list-disc pl-5 space-y-2 text-gray-800 font-medium">
+                  <li>No meat-eating (including fish and eggs)</li>
+                  <li>No illicit sex</li>
+                  <li>No intoxication (including alcohol, caffeine, and tobacco)</li>
+                  <li>No gambling</li>
+                </ul>
+              </div>
+
+              <h2 className="text-3xl font-bold text-gray-900 mb-6 border-b-2 border-iskcon-orange pb-2 inline-block">Chanting the Holy Name</h2>
+              <p className="mb-6">
+                Alongside the regulative principles, an aspiring initiate commits to chanting a minimum of <strong>16 rounds</strong> of the Hare Krishna maha-mantra daily on japa beads:
+              </p>
+              <blockquote className="bg-gray-50 italic p-6 rounded-lg text-center text-xl font-medium text-gray-800 shadow-inner mb-8">
+                Hare Krishna, Hare Krishna, Krishna Krishna, Hare Hare<br/>
+                Hare Rama, Hare Rama, Rama Rama, Hare Hare
+              </blockquote>
+
+              <h2 className="text-3xl font-bold text-gray-900 mb-6 border-b-2 border-iskcon-orange pb-2 inline-block">The Process of Initiation</h2>
+              <p className="mb-4">
+                Taking initiation is a serious lifetime commitment. If you are interested in preparing for initiation:
+              </p>
+              <ol className="list-decimal pl-5 space-y-4 mb-8">
+                <li><strong>Take Shelter:</strong> Begin by accepting the shelter of a spiritual master within ISKCON.</li>
+                <li><strong>Practice:</strong> Follow the four regulative principles and chant 16 rounds daily for a minimum of one year.</li>
+                <li><strong>Education:</strong> Complete the ISKCON Disciples Course (IDC), which provides essential training on guru-tattva and the duties of an initiated disciple.</li>
+                <li><strong>Recommendation:</strong> Receive a formal recommendation from your local temple president or authority.</li>
+              </ol>
             </div>
 
-            <h2 className="text-3xl font-bold text-gray-900 mb-6 border-b-2 border-iskcon-orange pb-2 inline-block">Chanting the Holy Name</h2>
-            <p className="mb-6">
-              Alongside the regulative principles, an aspiring initiate commits to chanting a minimum of <strong>16 rounds</strong> of the Hare Krishna maha-mantra daily on japa beads:
-            </p>
-            <blockquote className="bg-gray-50 italic p-6 rounded-lg text-center text-xl font-medium text-gray-800 shadow-inner mb-8">
-              Hare Krishna, Hare Krishna, Krishna Krishna, Hare Hare<br/>
-              Hare Rama, Hare Rama, Rama Rama, Hare Hare
-            </blockquote>
+            {/* Sidebar */}
+            <div className="lg:w-1/3 space-y-8">
+              {/* Useful Links */}
+              <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100 shadow-sm">
+                <h3 className="text-xl font-bold text-gray-900 mb-6 border-b-2 border-iskcon-orange pb-2 inline-block">Useful Links</h3>
+                <ul className="space-y-4">
+                  <li>
+                    <a href="#" className="flex items-center text-gray-700 hover:text-iskcon-orange transition-colors">
+                      <span className="w-2 h-2 bg-iskcon-orange rounded-full mr-3"></span>
+                      ISKCON Disciples Course
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="flex items-center text-gray-700 hover:text-iskcon-orange transition-colors">
+                      <span className="w-2 h-2 bg-iskcon-orange rounded-full mr-3"></span>
+                      Chanting Japa Guide
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="flex items-center text-gray-700 hover:text-iskcon-orange transition-colors">
+                      <span className="w-2 h-2 bg-iskcon-orange rounded-full mr-3"></span>
+                      Find a Spiritual Master
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="flex items-center text-gray-700 hover:text-iskcon-orange transition-colors">
+                      <span className="w-2 h-2 bg-iskcon-orange rounded-full mr-3"></span>
+                      Initiation Vows Explained
+                    </a>
+                  </li>
+                </ul>
+              </div>
 
-            <h2 className="text-3xl font-bold text-gray-900 mb-6 border-b-2 border-iskcon-orange pb-2 inline-block">The Process of Initiation</h2>
-            <p className="mb-4">
-              Taking initiation is a serious lifetime commitment. If you are interested in preparing for initiation:
-            </p>
-            <ol className="list-decimal pl-5 space-y-4 mb-8">
-              <li><strong>Take Shelter:</strong> Begin by accepting the shelter of a spiritual master within ISKCON.</li>
-              <li><strong>Practice:</strong> Follow the four regulative principles and chant 16 rounds daily for a minimum of one year.</li>
-              <li><strong>Education:</strong> Complete the ISKCON Disciples Course (IDC), which provides essential training on guru-tattva and the duties of an initiated disciple.</li>
-              <li><strong>Recommendation:</strong> Receive a formal recommendation from your local temple president or authority.</li>
-            </ol>
-
-            <div className="text-center mt-12 bg-gray-900 text-white p-8 rounded-2xl shadow-xl">
-              <h3 className="text-2xl font-bold mb-4">Ready to take the next step?</h3>
-              <p className="mb-6 text-gray-300">Contact our temple authorities to learn more about the initiation process and the ISKCON Disciples Course.</p>
-              <a href="/about/contact" className="inline-block bg-iskcon-orange text-white px-8 py-3 rounded-full font-bold hover:bg-orange-600 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                Contact Us
-              </a>
+              {/* Certificates & Forms */}
+              <div className="bg-orange-50 rounded-2xl p-8 border border-orange-100 shadow-sm">
+                <h3 className="text-xl font-bold text-gray-900 mb-6 border-b-2 border-iskcon-orange pb-2 inline-block">Certificates & Forms</h3>
+                <p className="text-gray-700 mb-6">Download the required recommendation forms and certificate templates for initiation.</p>
+                <div className="space-y-3">
+                  <a href="#" className="block w-full text-center bg-white border border-iskcon-orange text-iskcon-orange px-4 py-2 rounded-lg font-medium hover:bg-iskcon-orange hover:text-white transition-colors">
+                    Recommendation Form
+                  </a>
+                  <a href="#" className="block w-full text-center bg-white border border-iskcon-orange text-iskcon-orange px-4 py-2 rounded-lg font-medium hover:bg-iskcon-orange hover:text-white transition-colors">
+                    IDC Certificate Upload
+                  </a>
+                </div>
+              </div>
+              
+              {/* Ready to take next step? */}
+              <div className="bg-gray-900 text-white rounded-2xl p-8 shadow-lg text-center">
+                <h3 className="text-2xl font-bold mb-4">Ready to take the next step?</h3>
+                <p className="mb-6 text-gray-300">Contact our temple authorities to learn more about the initiation process and the ISKCON Disciples Course.</p>
+                <a href="/about/contact" className="inline-block w-full bg-iskcon-orange text-white px-8 py-3 rounded-full font-bold hover:bg-orange-600 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                  Contact Us
+                </a>
+              </div>
             </div>
           </div>
         </div>
