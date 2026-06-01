@@ -1,7 +1,80 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
 import Image from 'next/image';
 
 export default function InitiationPage() {
+  const [showModal, setShowModal] = useState(false);
+  const [mobile, setMobile] = useState('');
+  const [otp, setOtp] = useState('');
+  const [step, setStep] = useState<'MOBILE' | 'OTP' | 'SUCCESS'>('MOBILE');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [downloadLink, setDownloadLink] = useState('');
+
+  const handleSendOtp = async () => {
+    setError('');
+    if (!mobile || mobile.length < 10) {
+      setError('Please enter a valid mobile number');
+      return;
+    }
+    
+    setIsLoading(true);
+    try {
+      const res = await fetch('/api/otp/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mobile })
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setStep('OTP');
+      } else {
+        setError(data.error || 'Failed to send OTP');
+      }
+    } catch (err) {
+      setError('An error occurred. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleVerifyOtp = async () => {
+    setError('');
+    if (!otp || otp.length < 4) {
+      setError('Please enter a valid OTP');
+      return;
+    }
+    
+    setIsLoading(true);
+    try {
+      const res = await fetch('/api/otp/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mobile, otp })
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setDownloadLink(data.downloadUrl || '#');
+        setStep('SUCCESS');
+      } else {
+        setError(data.error || 'Invalid OTP');
+      }
+    } catch (err) {
+      setError('An error occurred. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const resetModal = () => {
+    setShowModal(false);
+    setStep('MOBILE');
+    setMobile('');
+    setOtp('');
+    setError('');
+    setDownloadLink('');
+  };
+
   return (
     <main className="min-h-screen pt-20">
       {/* Hero Section */}
@@ -106,9 +179,11 @@ export default function InitiationPage() {
                   <a href="#" className="block w-full text-center bg-white border border-iskcon-orange text-iskcon-orange px-4 py-2 rounded-lg font-medium hover:bg-iskcon-orange hover:text-white transition-colors">
                     Recommendation Form
                   </a>
-                  <a href="#" className="block w-full text-center bg-white border border-iskcon-orange text-iskcon-orange px-4 py-2 rounded-lg font-medium hover:bg-iskcon-orange hover:text-white transition-colors">
-                    IDC Certificate Upload
-                  </a>
+                  <button 
+                    onClick={() => setShowModal(true)}
+                    className="block w-full text-center bg-white border border-iskcon-orange text-iskcon-orange px-4 py-2 rounded-lg font-medium hover:bg-iskcon-orange hover:text-white transition-colors">
+                    IDC Certificate Download
+                  </button>
                 </div>
               </div>
               
@@ -124,6 +199,96 @@ export default function InitiationPage() {
           </div>
         </div>
       </section>
+
+      {/* OTP Modal */}
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 backdrop-blur-sm transition-opacity">
+          <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 relative overflow-hidden transform transition-all">
+            <button 
+              onClick={resetModal}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-700 focus:outline-none"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">IDC Certificate Download</h3>
+
+            {error && (
+              <div className="mb-4 p-3 bg-red-50 text-red-600 rounded-lg text-sm border border-red-100">
+                {error}
+              </div>
+            )}
+
+            {step === 'MOBILE' && (
+              <div className="space-y-4">
+                <p className="text-gray-600 text-sm">Please enter your registered mobile number to verify your identity and download the certificate.</p>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
+                  <input 
+                    type="tel" 
+                    value={mobile}
+                    onChange={(e) => setMobile(e.target.value)}
+                    placeholder="Enter 10-digit number"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-iskcon-orange focus:border-transparent outline-none transition-all"
+                  />
+                </div>
+                <button 
+                  onClick={handleSendOtp}
+                  disabled={isLoading}
+                  className={`w-full bg-iskcon-orange text-white py-2 rounded-lg font-medium hover:bg-orange-600 transition-colors ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                >
+                  {isLoading ? 'Sending OTP...' : 'Send OTP'}
+                </button>
+              </div>
+            )}
+
+            {step === 'OTP' && (
+              <div className="space-y-4">
+                <p className="text-gray-600 text-sm">We've sent an OTP to <strong>{mobile}</strong>. (For testing, use <strong>1234</strong>)</p>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Enter OTP</label>
+                  <input 
+                    type="text" 
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value)}
+                    placeholder="4-digit code"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-iskcon-orange focus:border-transparent outline-none text-center text-lg tracking-widest transition-all"
+                    maxLength={4}
+                  />
+                </div>
+                <button 
+                  onClick={handleVerifyOtp}
+                  disabled={isLoading}
+                  className={`w-full bg-iskcon-orange text-white py-2 rounded-lg font-medium hover:bg-orange-600 transition-colors ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                >
+                  {isLoading ? 'Verifying...' : 'Verify OTP'}
+                </button>
+                <div className="text-center mt-2">
+                  <button onClick={() => setStep('MOBILE')} className="text-sm text-iskcon-orange hover:underline">Change Mobile Number</button>
+                </div>
+              </div>
+            )}
+
+            {step === 'SUCCESS' && (
+              <div className="text-center space-y-6 py-4">
+                <div className="w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <h4 className="text-xl font-bold text-gray-900">Verification Successful!</h4>
+                <p className="text-gray-600 text-sm">Your identity has been verified. You can now download your IDC Certificate.</p>
+                <a 
+                  href={downloadLink}
+                  download
+                  onClick={resetModal}
+                  className="inline-block w-full bg-green-500 text-white py-3 rounded-lg font-bold hover:bg-green-600 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                >
+                  Download Certificate Now
+                </a>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </main>
   );
 }
