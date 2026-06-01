@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { 
-    FaSearch, FaPlay, FaPause, FaFolder, FaMusic, FaArrowLeft, FaHome,
+    FaPlay, FaPause, FaFolder, FaMusic, FaArrowLeft, FaHome,
     FaVolumeUp, FaVolumeMute, FaSpinner
 } from 'react-icons/fa';
 

@@ -344,9 +344,6 @@ export default function PrasadamPage() {
                 participate in a sacred tradition that brings spiritual benefits and helps in your journey
                 toward Krishna consciousness.
               </p>
-              <p>
-                By partaking in prasadam, you not only enjoy delicious vegetarian cuisine but also participate in a sacred tradition that brings spiritual benefits and helps in your journey toward Krishna consciousness.
-              </p>
             </div>
           </div>
         </div>

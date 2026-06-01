@@ -49,7 +49,9 @@ async function resolveUploadsPlaylistId(): Promise<string | null> {
             next: { revalidate: 86400 },
         });
         const html = await res.text();
-        const match = html.match(/"channelId":"(UC[\w-]{22})"/);
+        const canonicalMatch = html.match(/<link rel="canonical" href="https:\/\/www\.youtube\.com\/channel\/(UC[\w-]{22})"/);
+        const altMatch = html.match(/"channelId":"(UC[\w-]{22})"/);
+        const match = canonicalMatch || altMatch;
         if (match) {
             // Channel ID: UCxxxxxxx → Uploads playlist ID: UUxxxxxxx
             const uploadsId = 'UU' + match[1].slice(2);
